@@ -141,20 +141,64 @@ uname -a → Linux vm-lab-01 Ubuntu
 ![SSH Connected](screenshots/08-ssh-connected.png)
 ![VM Verified](screenshots/09-vm-verified.png)
 
-## Phase 4 — Nginx Web Server
-🔄 Not started yet
+## Phase 4 — Configure VM and Install Nginx ✅ COMPLETED
+
+# What I Did
+- Confirmed I was inside the VM showing azureuser@vm-lab-01
+- Checked VM resources using uname, free, nproc and df commands
+- Updated system packages using apt update and apt upgrade
+- Installed Nginx web server using apt install command
+- Started Nginx service and enabled auto start on reboot
+- Verified Nginx was running showing active running in green
+- Opened index.html file using nano text editor
+- Deleted default Nginx content
+- Pasted custom HTML page with my name and lab details
+- Verified page saved correctly using cat command
+
+# Commands I Ran 
+(Command) What It Does
+(uname -a) Shows OS and kernel version 
+(free -h) Shows RAM usage in readable format 
+(nproc) Shows number of CPU cores
+(df -h) Shows disk space usage 
+(sudo apt update) Updates list of available packages
+(sudo apt upgrade -y) Installs all available updates
+(sudo apt install nginx -y) Installs Nginx web server
+(sudo systemctl start nginx) Starts Nginx service right now
+(sudo systemctl enable nginx) Auto starts Nginx on every reboot
+(sudo systemctl status nginx) Checks if Nginx is running
+(sudo nano /var/www/html/index.html) Opens web page file for editing
+(cat /var/www/html/index.html) Displays content of web page file
+
+# What I Learned
+- sudo means run as administrator on Linux
+- apt is Ubuntu's package manager like an app store for terminal
+- Always run apt update before installing anything on a new server
+- systemctl manages Linux services — start stop enable disable status
+- enable makes a service start automatically after every reboot
+- No output after a command on Linux usually means success
+- nano is a simple text editor built into Linux terminal
+- Ctrl X then Y then Enter saves and exits nano editor
+- Web pages served by Nginx are stored in /var/www/html/ folder
+- index.html is the default page Nginx serves to visitors
+- cat command displays the contents of any file in terminal
+
+# My Custom Page Details
+- Page title: Aadil's Azure VM Lab
+- Deployed by: Aadil Hussain
+- VM: Ubuntu Server 24.04 LTS
+- Region: North Europe
+- Lab: Azure 30-Day Challenge
+
+# Screenshots
+![VM Resources](screenshots/10-vm-resources.png)
+![System Updated](screenshots/11-system-updated.png)
+![Nginx Running](screenshots/12-nginx-running.png)
+![Custom Page Saved](screenshots/13-custom-page-saved.png)
+
 
 ## Phase 5 — Open Website
 🔄 Not started yet
 
 ## Phase 6 — Cleanup
-🔄 Not started yet
-
-## Problems I Faced
-Easy to track and create no problem faced
-
-## What I Learned
-How to create a resource group 
-
-## Cost Tracking
-No cost for creating a Resource Group
+🔄 Not started yet 
