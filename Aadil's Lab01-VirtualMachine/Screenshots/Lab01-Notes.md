@@ -1,7 +1,8 @@
 Lab 01- Azure Virtual Machine
 Name: Aadil Hussain
-Date Started: 27 March 2026
-Status-🔄 In Progress
+Date of Completion: 29 March 2026
+Total Time Taken: 3 Days
+Status-✅ COMPLETED
 
 ## Phase 1 - Resource Group ✅ COMPLETED
 
@@ -197,8 +198,7 @@ uname -a → Linux vm-lab-01 Ubuntu
 ![Custom Page Saved](screenshots/13-custom-page-saved.png)
 
 
-## Phase 5 — Open Website
-✅ COMPLETED
+## Phase 5 — Open Website ✅ COMPLETED
 # What I Did
 - Went to Azure Portal and opened vm-lab-01
 - Clicked Networking in the left sidebar
@@ -234,5 +234,83 @@ http://52.184.18.137
 ![Website Live](screenshots/15-website-live.png)
 
 
-## Phase 6 — Cleanup
-🔄 Not started yet 
+## Phase 6 — Cleanup ✅ COMPLETED
+
+# What I Did
+- Typed exit in SSH terminal to disconnect from VM
+- Went to Azure Portal and opened Resource Groups
+- Clicked rg-lab-vm-01 and saw all 6 resources inside
+- Clicked Delete resource group button
+- Typed rg-lab-vm-01 to confirm deletion
+- Ticked the confirmation checkbox
+- Clicked the red Delete button
+- Waited 3 minutes for deletion to complete
+- Confirmed rg-lab-vm-01 is gone from the list
+- Checked Cost Management to see credit usage
+
+# Resources That Were Deleted
+Resource (Type) 
+vm-lab-01 (Virtual machine)
+vm-lab-01-ip (Public IP address)
+vm-lab-01-nsg (Network security group)
+vm-lab-01-vnet (Virtual network)
+vm-lab-01_disk (OS disk)
+vm-lab-01-nic (Network interface)
+
+# What I Learned
+- Deleting the resource group deletes ALL resources inside at once
+- This is the cleanest and safest cleanup method in Azure
+- NetworkWatcherRG stays behind — Azure manages it automatically
+- Always check Cost Management after every lab to track spending
+- Always delete resources after every lab to protect free credits
+
+# Cost This Lab Used
+[$0.15]
+
+# Screenshots
+![Resources Before Delete](screenshots/16-resources-before-delete.png)
+![Delete Confirmation](screenshots/17-delete-confirmation.png)
+![Cleanup Complete](screenshots/18-cleanup-complete.png)
+![Cost Analysis](screenshots/19-cost-analysis.png)
+
+## What I Learned — Full Summary
+- How to create and manage Azure Resource Groups
+- How to deploy a Linux Virtual Machine on Azure
+- How to use SSH key authentication to connect securely
+- How to run Linux commands to manage a server
+- How to install and configure Nginx web server
+- How to open ports using NSG rules in Azure
+- How to serve a live website from a cloud VM
+- How to document technical work professionally
+- How to use Git and GitHub to save my work
+- How to clean up Azure resources to protect credits
+
+## What I Would Do Differently Next Time
+
+1. Check region availability before starting the VM creation.
+   I spent time trying multiple regions because Standard_B1s was
+   not available in West Europe or North Europe. Next time I will
+   check which sizes are available in my chosen region first before
+   filling in all the other settings.
+
+2. Take screenshots at every single step immediately.
+   A few times I forgot to take a screenshot right after completing
+   a step and had to go back. Next time I will take the screenshot
+   first before moving to the next step — make it a habit.
+
+3. Open the notes file before starting the lab.
+   I should have VS Code open with my notes file ready before
+   touching the Azure Portal. This way I document each step
+   immediately while it is fresh rather than trying to remember
+   later.
+
+4. Set a budget alert before creating any resources.
+   Next time the very first thing I will do is set a $10 budget
+   alert in Cost Management so I get an email warning if anything
+   costs more than expected. This protects my $200 credit.
+
+5. Read all settings carefully before clicking Create.
+   I almost selected a Windows Server image and an expensive VM
+   size by mistake. Next time I will read every field on the
+   Review + create page carefully before clicking the final
+   Create button.
