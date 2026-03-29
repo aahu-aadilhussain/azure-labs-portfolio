@@ -79,8 +79,67 @@ Inbound port (SSH 22)
 [Deployment Complete] (screenshots/05-vm-deployment-complete.png)
 [VM Overview with IP] (screenshots/06-vm-overview-public-ip.png)
 
-## Phase 3 — SSH Connection
-🔄 Not started yet
+## Phase 3  SSH Connection ✅ COMPLETED
+
+# What I Did
+- Opened VS Code terminal with Ctrl and backtick
+- Navigated to Lab01-VirtualMachine folder
+- Confirmed vm-lab-01-key.pem was in the folder using Get-ChildItem
+- Ran SSH command to connect to VM using public IP 52.184.18.137
+- Typed yes to accept host fingerprint warning on first connection
+- Got Permission denied error first time (key file path had spaces)
+- Fixed by copying key file to C:\Users\User\ with no spaces in path
+- Ran SSH command again with simple path and connected successfully
+- Terminal prompt changed to azureuser@vm-lab-01:~$
+- Ran whoami, hostname and uname commands to verify connection
+
+# Problem I Faced and How I Fixed It
+SSH could not find the .pem key file because the folder path
+contained an apostrophe in "Aadil's Azure Labs" which confused SSH.
+
+Fixed by copying the key file to a exact path:
+C:\Users\User\Desktop\Aadil's Azure Labs\Aadil's Lab01-VirtualMachine\vm-lab-01-key_pem
+
+Then ran SSH with the full path and it worked immediately.
+
+# Commands    Used
+
+Command  (What It Does)
+Get-ChildItem  (Lists all files in current folder)
+ssh -i key.pem azureuser@IP  (Connects to VM using SSH key)
+whoami (Shows current logged in username)
+hostname (Shows the name of the computer)
+uname -a (Shows OS and kernel version)
+
+# SSH Command That Worked
+ssh -i " C:\Users\User\Desktop\Aadil's Azure Labs\Aadil's Lab01-VirtualMachine\vm-lab-01-key_pem azureuser@52.184.18.137
+
+
+# What I Saw After Connecting
+whoami → azureuser
+hostname → vm-lab-01
+uname -a → Linux vm-lab-01 Ubuntu
+
+# What I Learned
+- SSH stands for Secure Shell — encrypted remote connection
+- Port 22 must be open in NSG for SSH to work
+- The .pem file is my private key to authenticate without a password
+- File paths with spaces or apostrophes can break SSH on Windows
+- The tilde symbol means I am in the home directory of the VM
+- The dollar symbol means the terminal is ready for commands
+- I am now controlling a computer in Microsoft's data center
+  from my PC in Doha Qatar
+- First connection always shows a fingerprint warning — type yes
+
+# My VM Details
+- Public IP Address: 52.184.18.137
+- Username: azureuser
+- VM Name: vm-lab-01
+- OS: Ubuntu Server 24.04 LTS
+
+# Screenshots
+![SSH Connected](screenshots/08-ssh-connected.png)
+![VM Verified](screenshots/09-vm-verified.png)
 
 ## Phase 4 — Nginx Web Server
 🔄 Not started yet
