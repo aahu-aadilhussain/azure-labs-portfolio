@@ -198,7 +198,41 @@ uname -a → Linux vm-lab-01 Ubuntu
 
 
 ## Phase 5 — Open Website
-🔄 Not started yet
+✅ COMPLETED
+# What I Did
+- Went to Azure Portal and opened vm-lab-01
+- Clicked Networking in the left sidebar
+- Added new inbound NSG rule to open port 80
+- Waited 30 seconds for rule to apply
+- Opened new browser tab and typed http://52.184.18.137
+- Saw my custom web page loading successfully
+- Confirmed my name and lab details showing on the page
+
+# NSG Rule  Added
+Source - Any
+Destination port - 80
+Protocol - TCP
+Action - Allow 
+Priority - 100 
+Name - Allow-HTTP-80
+
+# What I Learned
+- NSG rules control what traffic can reach my VM
+- Port 80 is for HTTP unencrypted web traffic
+- Port 443 is for HTTPS encrypted web traffic
+- Lower priority number means the rule is checked first
+- Opening a port in NSG is like unlocking a door in the firewall
+- My VM is now a real web server accessible from anywhere in the world
+- Anyone with my IP address can see my web page right now
+- http must be used not https since we have no SSL certificate yet
+
+# My Live Website URL
+http://52.184.18.137
+
+# Screenshots
+![NSG Port 80 Added](screenshots/14-nsg-port-80-added.png)
+![Website Live](screenshots/15-website-live.png)
+
 
 ## Phase 6 — Cleanup
 🔄 Not started yet 
