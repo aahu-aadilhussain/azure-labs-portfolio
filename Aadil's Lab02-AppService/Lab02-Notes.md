@@ -57,8 +57,80 @@ provided by Azure.
 
 ---
 
-## Phase 2 — Create Web App
-🔄 Not started yet
+## Problems I Faced
+| Problem | What I Tried | How I Fixed It |
+
+| Free F1 not available in North Europe | Tried West Europe too | Changed region to East Asia and it worked |
+---
+
+## Phase 2 — Create Web App ✅ COMPLETED
+
+### What I Did
+- Navigated to App Services in Azure Portal
+- Clicked Create then Web App
+- Filled in all settings on the Basics tab
+- Left all other tabs as default
+- Clicked Review + create
+- Clicked Create and waited 2 minutes for deployment
+- Clicked Go to resource and explored the Web App overview
+- Visited the default domain URL and saw 502 error
+- 502 error is normal — means app is live but no code deployed yet
+
+### Settings I Used
+| Field | Value |
+|---|---|
+| Subscription | Azure subscription 1 |
+| Resource group | rg-lab-appservice-02 |
+| App name | aadil-azure-lab02 |
+| Publish | Code |
+| Runtime stack | PHP 8.2 |
+| Operating System | Linux |
+| Region | East Asia |
+| App Service Plan | plan-lab-free-02 |
+| Pricing tier | Free F1 |
+
+### My Web App URL
+https://aadil-azure-lab02-caaehya6c9e6gsch.eastasia-01.azurewebsites.net
+
+### What the 502 Error Means
+A 502 error at this stage is completely normal and expected.
+It means the App Service is running and responding but has
+no code inside it yet. Once we deploy our HTML code in
+Phase 3 the 502 will disappear and our custom page will
+show instead.
+
+### Key Difference From Lab 1
+| | Lab 1 VM | Lab 2 App Service |
+|---|---|---|
+| Access method | Public IP address | Domain name URL |
+| Server setup | Manual SSH and Nginx | Automatic by Azure |
+| OS management | Done by me | Done by Azure |
+| Code deployment | nano editor via SSH | Azure deployment tools |
+| Time to deploy | 30 minutes | 5 minutes |
+
+### What I Learned
+- Web App name must be globally unique across all Azure customers
+- Azure automatically provides a free azurewebsites.net subdomain
+- Runtime stack defines what programming language the app uses
+- App Service Plan and Web App must be in the same region
+- PaaS requires zero server management compared to IaaS
+- A 502 error means the server is running but has no code yet
+- No SSH no Nginx installation no Linux commands needed
+- App Service is much faster to set up than a Virtual Machine
+
+### Problems I Faced
+| Problem | What I Tried | How I Fixed It |
+|---|---|---|
+| Missed validation and deployment screenshots | Could not go back | Noted in documentation and will not miss next time |
+| 502 error on URL | Checked Azure Portal | Normal — no code deployed yet — fixed in Phase 3 |
+
+### Screenshots
+### Screenshots
+![Web App Validation](screenshots/03-web-app-validation.png)
+— Note: Missed this screenshot during creation —
+![Web App Deployed](screenshots/04-web-app-deployed.png)
+![Web App Overview](screenshots/05-web-app-overview.png)
+![Default Page Live](screenshots/06-default-page-live.png)
 
 ---
 
@@ -78,10 +150,7 @@ provided by Azure.
 ---
 
 ## Problems I Faced
-| Problem | What I Tried | How I Fixed It |
 
-| Free F1 not available in North Europe | Tried West Europe too | Changed region to East Asia and it worked |
----
 
 ## What I Learned
 
