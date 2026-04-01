@@ -134,8 +134,77 @@ show instead.
 
 ---
 
-## Phase 3 — Deploy Code
-🔄 Not started yet
+## Phase 3 — Deploy Code ✅ COMPLETED
+
+### What I Did
+- Created index.php file in VS Code with custom HTML content
+- Tried deploying via VS Code Azure extension — got stuck for 33 minutes
+- Cancelled stuck deployment and switched to Kudu method
+- Started the Web App which was showing Stopped status
+- Navigated to Advanced Tools → Kudu in Azure Portal
+- Created deploy.zip using PowerShell Compress-Archive command
+- Uploaded deploy.zip via Kudu Zip Push Deploy
+- Visited the URL and saw custom page loading successfully
+- 502 error completely gone and website is live
+
+### File I Created
+| File | Location | Purpose |
+|---|---|---|
+| index.php | Lab02-AppService folder | Custom HTML web page |
+| deploy.zip | Lab02-AppService folder | ZIP package for Kudu deployment |
+
+### Why index.php Not index.html
+The runtime stack is PHP 8.2 so the default file
+must be index.php. PHP can serve plain HTML perfectly.
+Azure App Service looks for index.php as the default
+page when PHP runtime is selected.
+
+### Command I Used to Create ZIP
+```powershell
+Compress-Archive -Path "index.php" -DestinationPath "deploy.zip"
+```
+
+### Deployment Method — Kudu Zip Push Deploy
+Kudu is Azure App Service's built in deployment tool.
+It is accessible via Advanced Tools in the App Service sidebar.
+Zip Push Deploy uploads a ZIP file directly to the wwwroot
+folder of the App Service — fast and reliable.
+
+### How to Access Kudu
+Azure Portal → App Service → Development Tools →
+Advanced Tools → Go → Tools → Zip Push Deploy
+
+### My Live Website URL
+https://aadil-azure-lab02-caaehya6c9e6gsch.eastasia-01.azurewebsites.net
+
+### Problems I Faced
+| Problem | What I Tried | How I Fixed It |
+|---|---|---|
+| VS Code deployment stuck hours | Waited and cancelled | Used Kudu instead |
+| Web App status was Stopped | Checked App Services list | Clicked Start button |
+| Kudu needed ZIP not individual files | Read upload instructions | Used Compress-Archive in PowerShell |
+| Free F1 daily compute limit reached | Waited until next day | Compute resets every 24 hours |
+
+### Comparison — VS Code vs Kudu Deployment
+| Method | Time | Reliability | Best For |
+|---|---|---|---|
+| VS Code Extension | 2 to 5 min normally | Can get stuck | Regular updates |
+| Kudu Zip Push | Under 1 minute | Very reliable | Quick deployments |
+| Local Git push | 1 to 2 minutes | Reliable | CI/CD pipelines |
+
+### What I Learned
+- App Service Free F1 tier has 60 minute daily compute limit
+- Kudu is Azure's built in deployment and management tool
+- Zip Push Deploy is the fastest and most reliable method
+- PowerShell Compress-Archive creates ZIP files from terminal
+- Web App must be Running status before deployment works
+- PHP runtime requires index.php as the default page name
+- PaaS deployment is much simpler than IaaS SSH deployment
+- Always check App Service status before troubleshooting deployment
+
+### Screenshots
+![Website Live](screenshots/07-website-live.png)
+![Kudu Deployment](screenshots/08-kudu-deployment.png)
 
 ---
 
