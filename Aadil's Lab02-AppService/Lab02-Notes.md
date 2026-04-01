@@ -1,7 +1,9 @@
 # Lab 02 — Azure App Service
 **Name:** Aadil Hussain
 **Date Started:** 31 March 2026
-**Status:** 🔄 In Progress
+**Date Completed:** 1 April 2026
+**Total Time Taken:** [2 days]
+**Status:** ✅ COMPLETED
 
 ---
 
@@ -273,19 +275,66 @@ in Azure App Service settings securely.
 
 ---
 
-## Phase 5 — Cleanup
-🔄 Not started yet
+## Phase 5 — Cleanup ✅ COMPLETED
 
----
+### What I Did
+- Took final screenshot of live website as proof
+- Navigated to Resource Groups in Azure Portal
+- Opened rg-lab-appservice-02 and saw all resources
+- Clicked Delete resource group button
+- Typed rg-lab-appservice-02 to confirm deletion
+- Ticked the confirmation checkbox
+- Clicked red Delete button
+- Waited 3 minutes for deletion to complete
+- Confirmed rg-lab-appservice-02 is gone from list
+- Checked Cost Management for credit usage
 
-## Problems I Faced
+### Resources That Were Deleted
+| Resource | Type |
+|---|---|
+| aadil-azure-lab02 | Web App |
+| plan-lab-free-02 | App Service Plan |
+
+### What I Learned
+- Deleting resource group removes everything inside at once
+- App Service Plan gets deleted with the resource group
+- Always delete after every lab to protect free credits
+- Free F1 App Service Plan costs nothing but still good habit
+
+### Cost This Lab Used
+ - negligible
+  
+### Screenshots
+![Final Website Proof](screenshots/13-final-website-proof.png)
+![Resources Before Delete](screenshots/14-resources-before-delete.png)
+![Delete Confirmation](screenshots/15-delete-confirmation.png)
+![Cleanup Complete](screenshots/16-cleanup-complete.png)
+![Cost Analysis](screenshots/17-cost-analysis.png)
+
+## What I Learned — Full Summary
+- Difference between IaaS and PaaS in real practice
+- How to create and configure Azure App Service Plan
+- How to deploy a Web App on Azure App Service
+- How to use Kudu for reliable ZIP deployment
+- How to configure environment variables securely
+- Why environment variables are better than hardcoded values
+- How App Service scaling works
+- How to clean up App Service resources properly
+
+## IaaS vs PaaS — My Understanding After Both Labs
+| | Lab 1 IaaS VM | Lab 2 PaaS App Service |
+|---|---|---|
+| Setup time | 30 minutes | 10 minutes |
+| Server management | Manual | Azure handles it |
+| Deployment method | SSH and nano | Kudu ZIP upload |
+| OS updates | My responsibility | Azure responsibility |
+| Scaling | Complex | One click |
+| Best for | Full control needed | Web apps and APIs |
 
 
-## What I Learned
-
-
----
-
-## Cost Tracking
-
----
+## What I Would Do Differently Next Time
+1. Check App Service status is Running before deploying
+2. Use Kudu ZIP deploy from the start instead of VS Code extension
+3. Create the ZIP file before opening Kudu to save time
+4. Take validation and deployment screenshots immediately
+5. Check daily compute limit before starting long deployments
