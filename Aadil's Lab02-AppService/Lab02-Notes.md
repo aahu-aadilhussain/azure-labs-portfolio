@@ -208,8 +208,68 @@ https://aadil-azure-lab02-caaehya6c9e6gsch.eastasia-01.azurewebsites.net
 
 ---
 
-## Phase 4 — Configure Settings
-🔄 Not started yet
+## Phase 4 — Configure Settings ✅ COMPLETED
+### What I Did
+- Navigated to Environment variables in App Service settings
+- Added 3 environment variables to the app
+- Saved settings and confirmed app restart
+- Verified app was still running after restart
+- Explored App Service Plan details and limits
+- Viewed Scale up options showing available pricing tiers
+
+### Environment Variables I Added
+| Name | Value | Purpose |
+|---|---|---|
+| APP_ENVIRONMENT | production | Identifies the environment type |
+| APP_OWNER | Aadil Hussain | Identifies the app owner |
+| LAB_NAME | Azure 30-Day Challenge Lab 02 | Identifies the lab |
+
+### Why Environment Variables Matter
+In real applications you never put sensitive information
+like passwords or API keys directly in your code because:
+- Anyone who reads the code can see the password
+- If you push code to GitHub the password becomes public
+- Changing the password requires changing and redeploying code
+
+Environment variables solve this by storing values outside
+the code. The app reads them at runtime. Nobody sees the
+values in the source code.
+
+### Real World Example
+Instead of writing this in code:
+password = "MySecretPassword123"
+
+You write:
+password = os.getenv("DB_PASSWORD")
+
+And store the actual password as an environment variable
+in Azure App Service settings securely.
+
+### App Service Plan Details
+| Setting | Value |
+|---|---|
+| Plan name | plan-lab-free-02 |
+| Pricing tier | Free F1 |
+| Daily CPU limit | 60 minutes |
+| Memory | 1 GB |
+| Storage | 1 GB |
+| Custom domains | Not supported on Free |
+| SSL certificates | Not supported on Free |
+
+### What I Learned
+- Environment variables store config values outside the code
+- Never hardcode passwords or API keys in application code
+- App Service restarts automatically when settings are changed
+- Free F1 tier has 60 minute daily CPU compute limit
+- Scale up allows upgrading plan without recreating the app
+- Scaling takes minutes and requires no code changes
+- Environment variables are encrypted at rest in Azure
+
+### Screenshots
+![Environment Variables](screenshots/09-environment-variables.png)
+![App Still Running](screenshots/10-app-still-running.png)
+![App Service Plan Details](screenshots/11-app-service-plan-details.png)
+![Scale Up Options](screenshots/12-scale-up-options.png)
 
 ---
 
