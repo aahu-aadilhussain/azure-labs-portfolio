@@ -210,9 +210,95 @@ snet-private (10.0.2.0/24) — Database zone
 ![Network Topology](screenshots/13-network-topology.png)
 ---
 
-## Phase 4 — Verify and Test
-🔄 Not started yet
+## Phase 4 — Verify and Test ✅ COMPLETED
 
+### What I Did
+- Navigated to nsg-public and confirmed 3 inbound rules
+- Confirmed nsg-public is associated with 1 subnet
+- Navigated to Network Watcher in Azure Portal
+- Explored all Network diagnostic tools available
+- Found IP Flow Verify tool — requires VM to test fully
+- Found Effective Security Rules tool
+- Found NSG Diagnostics tool
+- Took screenshots of all Network Watcher tools
+- Confirmed entire network architecture is correctly set up
+
+### Resources Confirmed in rg-lab-network-03
+| Resource | Type | Status |
+|---|---|---|
+| vnet-lab-03 | Virtual Network | Active |
+| nsg-public | Network Security Group | Active — 3 inbound rules |
+| nsg-private | Network Security Group | Active — 2 inbound rules |
+| snet-public | Subnet | Associated with nsg-public |
+| snet-private | Subnet | Associated with nsg-private |
+
+### nsg-public Confirmed Rules
+| Priority | Name | Port | Protocol | Action |
+|---|---|---|---|---|
+| 100 | Allow-HTTP | 80 | TCP | Allow |
+| 110 | Allow-HTTPS | 443 | TCP | Allow |
+| 120 | Allow-SSH | 22 | TCP | Allow |
+
+### nsg-private Confirmed Rules
+| Priority | Name | Source | Action |
+|---|---|---|---|
+| 100 | Allow-From-Public-Subnet | 10.0.1.0/24 | Allow |
+| 200 | Deny-Internet | Internet | Deny |
+
+### Network Watcher Tools I Explored
+| Tool | What It Does | Requires VM |
+|---|---|---|
+| IP Flow Verify | Tests if traffic allowed or denied by NSG | Yes |
+| NSG Diagnostics | Analyses NSG rules and finds issues | Yes |
+| Next Hop | Shows where traffic goes from a VM | Yes |
+| Effective Security Rules | Shows all active rules on a resource | Yes |
+| VPN Troubleshoot | Diagnoses VPN gateway issues | Yes |
+| Packet Capture | Captures network packets for analysis | Yes |
+| Connection Troubleshoot | Tests connectivity between endpoints | Yes |
+
+### Why IP Flow Verify is Useful
+IP Flow Verify lets you test NSG rules without
+actually sending any real network traffic.
+You specify a source IP, destination IP, port
+and direction — inbound or outbound.
+It tells you which NSG rule would allow or deny
+that specific traffic and which rule matched.
+This is extremely useful for debugging connectivity
+issues in production environments without risk.
+
+### Complete Architecture Verified
+Internet
+↓
+nsg-public
+Allow HTTP port 80
+Allow HTTPS port 443
+Allow SSH port 22
+↓
+snet-public (10.0.1.0/24)
+Web server zone
+↓
+nsg-private
+Allow only from 10.0.1.0/24
+Deny all internet traffic
+↓
+snet-private (10.0.2.0/24)
+Database zone — fully protected
+
+### What I Learned
+- Network Watcher is Azure's built in network monitoring service
+- It is created automatically when you deploy VMs or VNets
+- IP Flow Verify tests traffic rules without real packets
+- Effective Security Rules shows combined active rules
+- NSG Diagnostics helps find misconfigured rules quickly
+- All diagnostic tools require a VM with network interface
+- Network Watcher tools are completely free to use
+- Always verify network architecture before deploying resources
+- nsg-public correctly shows Associated with 1 subnet
+
+### Screenshots
+![Network Watcher Tools](screenshots/15-network-watcher-tools.png)
+![Effective Security Rules Page](screenshots/16-effective-security-rules-page.png)
+![NSG Diagnostics](screenshots/17-nsg-diagnostics.png)
 ---
 
 ## Phase 5 — Cleanup
