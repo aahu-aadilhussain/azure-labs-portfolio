@@ -95,8 +95,64 @@ makes the architecture easy to read and understand.
 
 ---
 
-## Phase 2 — Network Security Groups
-🔄 Not started yet
+## Phase 2 — Network Security Groups ✅ COMPLETED
+
+### What I Did
+- Navigated to Network Security Groups in Azure Portal
+- Created nsg-public in rg-lab-network-03 North Europe
+- Added 3 inbound rules to nsg-public
+- Created nsg-private in rg-lab-network-03 North Europe
+- Added Allow-From-Public-Subnet rule to nsg-private
+- Added Deny-Internet rule to nsg-private
+
+### nsg-public Rules
+| Priority | Name | Port | Action | Reason |
+|---|---|---|---|---|
+| 100 | Allow-HTTP | 80 | Allow | Web traffic from internet |
+| 110 | Allow-HTTPS | 443 | Allow | Secure web traffic |
+| 120 | Allow-SSH | 22 | Allow | Remote management |
+
+### nsg-private Rules
+| Priority | Name | Source | Action | Reason |
+|---|---|---|---|---|
+| 100 | Allow-From-Public-Subnet | 10.0.1.0/24 | Allow | Web server can reach database |
+| 200 | Deny-Internet | Internet | Deny | Block all internet access |
+
+### How NSG Priority Works
+Rules are evaluated from lowest priority number first.
+Priority 100 is checked before priority 200.
+The first matching rule wins — no further rules checked.
+This is why we put Allow rules at lower numbers than Deny.
+
+### Why Two Separate NSGs
+nsg-public protects the web server subnet.
+It allows web traffic from anyone on the internet.
+nsg-private protects the database subnet.
+It only allows traffic from the web server subnet.
+This creates a layered security model called defence in depth.
+
+### Real World Application
+In production this architecture means:
+- Users access the website through the public subnet
+- Web server talks to database through the private subnet
+- Database is completely hidden from the internet
+- Even if web server is hacked database stays protected
+
+### What I Learned
+- NSGs are Azure's virtual firewall for subnets
+- Rules have priorities — lower number checked first
+- First matching rule wins — processing stops there
+- Source can be Any, IP address, or Service Tag
+- Service Tags like Internet represent groups of IPs
+- Two NSGs provide layered security — defence in depth
+- Private subnet should never allow direct internet access
+- NSG creation is completely free in Azure
+
+### Screenshots
+![NSG Public Created](screenshots/06-nsg-public-created.png)
+![NSG Public Rules](screenshots/07-nsg-public-rules.png)
+![NSG Private Created](screenshots/08-nsg-private-created.png)
+![NSG Private Rules](screenshots/09-nsg-private-rules.png)
 
 ---
 
