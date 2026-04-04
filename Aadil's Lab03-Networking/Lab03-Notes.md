@@ -156,9 +156,58 @@ In production this architecture means:
 
 ---
 
-## Phase 3 — Associate NSGs to Subnets
-🔄 Not started yet
+## Phase 3 — Associate NSGs to Subnets ✅ COMPLETED
 
+### What I Did
+- Navigated to vnet-lab-03 in Azure Portal
+- Opened Subnets page showing both subnets
+- Clicked snet-public and associated nsg-public
+- Saved the association and waited for it to apply
+- Clicked snet-private and associated nsg-private
+- Saved the association and waited for it to apply
+- Verified both subnets showing correct NSG names
+- Verified from NSG side that subnets are listed
+- Viewed network topology diagram in Network Watcher
+
+### NSG Associations
+| Subnet | NSG | Purpose |
+|---|---|---|
+| snet-public 10.0.1.0/24 | nsg-public | Protects web server tier |
+| snet-private 10.0.2.0/24 | nsg-private | Protects database tier |
+
+### Why Association Matters
+Creating an NSG alone does nothing.
+The NSG must be associated to a subnet to take effect.
+Once associated every resource in that subnet
+automatically inherits the NSG rules.
+This is like installing a security door in a building —
+the door must be hung in the doorframe to work.
+
+### What the Architecture Looks Like Now
+Internet
+↓
+nsg-public (Allow HTTP 80, HTTPS 443, SSH 22)
+↓
+snet-public (10.0.1.0/24) — Web server zone
+↓
+nsg-private (Allow from 10.0.1.0/24 only, Deny Internet)
+↓
+snet-private (10.0.2.0/24) — Database zone
+
+### What I Learned
+- NSGs must be associated to subnets to take effect
+- Association is done through the subnet settings
+- One NSG can protect multiple subnets
+- One subnet can only have one NSG at a time
+- Resources inherit NSG rules from their subnet automatically
+- Network Watcher topology shows visual network diagram
+- NSG association takes effect within seconds
+
+### Screenshots
+![NSGs Associated](screenshots/10-nsgs-associated.png)
+![NSG Public Subnet Verified](screenshots/11-nsg-public-subnet-verified.png)
+![NSG Private Subnet Verified](screenshots/12-nsg-private-subnet-verified.png)
+![Network Topology](screenshots/13-network-topology.png)
 ---
 
 ## Phase 4 — Verify and Test
