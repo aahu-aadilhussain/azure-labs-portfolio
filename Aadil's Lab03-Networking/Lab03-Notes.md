@@ -1,7 +1,9 @@
 # Lab 03 — Azure Networking — VNet and NSGs
 **Name:** Aadil Hussain
 **Date Started:** 2 April 2026
-**Status:** 🔄 In Progress
+**Date Completed:** 4 April 2026
+**Total Time Taken:** [2days]
+**Status:** ✅ COMPLETED
 
 ---
 
@@ -301,21 +303,75 @@ Database zone — fully protected
 ![NSG Diagnostics](screenshots/17-nsg-diagnostics.png)
 ---
 
-## Phase 5 — Cleanup
-🔄 Not started yet
+## Phase 5 — Cleanup ✅ COMPLETED
+
+### What I Did
+- Took final screenshot of subnets with NSGs attached
+- Navigated to Resource Groups in Azure Portal
+- Confirmed all 3 resources in rg-lab-network-03
+- Clicked Delete resource group
+- Typed rg-lab-network-03 to confirm deletion
+- Ticked confirmation checkbox
+- Clicked red Delete button
+- Waited 3 minutes for deletion to complete
+- Confirmed rg-lab-network-03 is gone from list
+- Checked Cost Management — VNet and NSGs are free
+
+### Resources Deleted
+| Resource | Type |
+|---|---|
+| vnet-lab-03 | Virtual Network |
+| nsg-public | Network Security Group |
+| nsg-private | Network Security Group |
+
+### Cost This Lab Used
+| Resource | Cost |
+|---|---|
+| Virtual Network | $0.00 — always free |
+| Subnets | $0.00 — always free |
+| NSGs | $0.00 — always free |
+| Total | $0.00 |
+
+### What I Learned
+- VNet and NSGs are completely free in Azure
+- Deleting resource group removes everything at once
+- NetworkWatcherRG stays behind — always leave it
+- Free networking resources allow unlimited practice
+- Always clean up even free resources — good habit
+
+### Screenshots
+![Final Architecture Proof](screenshots/18-final-architecture-proof.png)
+![Resources Before Delete](screenshots/19-resources-before-delete.png)
+![Delete Confirmation](screenshots/20-delete-confirmation.png)
+![Cleanup Complete](screenshots/21-cleanup-complete.png)
+![Cost Analysis](screenshots/22-cost-analysis.png)
 
 ---
 
 ## Problems I Faced
 | Problem | What I Tried | How I Fixed It |
 |---|---|---|
-| Write here | Write here | Write here |
+| Could not find Effective Security Rules in NSG sidebar | Searched through all sidebar options | Found it inside Network Watcher under Network diagnostic tools |
+| IP Flow Verify requires a VM to work | Tried to run it without a VM | Took screenshot of the tool page and documented what it does instead |
+| Effective Security Rules also requires VM network interface | Tried to use it without a VM | Documented the tool and took screenshots to show awareness |
+| NSG diagnostic tools all require a VM | Explored all tools | Understood that these tools are for troubleshooting live resources |
 
 ---
 
 ## What I Learned
-Fill at the end of the lab
-
+- Virtual Networks provide private isolated networking in Azure
+- Subnets segment a VNet into logical security zones
+- CIDR notation defines IP address ranges efficiently
+- NSGs act as virtual firewalls controlling traffic flow
+- NSG rules use priority numbers — lower checked first
+- First matching rule wins — processing stops there
+- Public subnet allows internet traffic for web servers
+- Private subnet blocks internet for database protection
+- NSGs must be associated to subnets to take effect
+- Network Watcher provides powerful diagnostic tools
+- IP Flow Verify tests traffic rules without real packets
+- VNet and NSGs are completely free in Azure
+- This architecture is used in real production environments
 ---
 
 ## Cost Tracking
@@ -331,13 +387,20 @@ Fill at the end of the lab
 ## My Confidence Rating After This Lab
 | Skill | Before | After |
 |---|---|---|
-| Understanding VNets | 1 | fill in |
-| Configuring subnets | 1 | fill in |
-| Creating NSG rules | 1 | fill in |
-| Understanding CIDR | 1 | fill in |
-| Network security concepts | 1 | fill in |
+| Understanding VNets | 1 | 3 |
+| Configuring subnets | 1 | 3 |
+| Creating NSG rules | 1 | 4 |
+| Understanding CIDR | 1 | 3 |
+| Network security concepts | 1 | 3 |
+| Using Network Watcher | 1 | 2 |
 
 ---
 
 ## What I Would Do Differently Next Time
-Fill at the end of the lab
+1. Deploy a VM in each subnet to fully test NSG rules
+2. Use IP Flow Verify to confirm traffic is allowed
+   or denied as expected before going to production
+3. Test the Deny-Internet rule is actually blocking
+   by trying to connect to the internet from the VM
+4. Add outbound NSG rules as well for complete control
+5. Document the architecture diagram from the start
