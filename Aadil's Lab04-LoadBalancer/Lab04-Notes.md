@@ -42,8 +42,40 @@ When VM recovers — traffic resumes automatically
 
 ---
 
-## Phase 1 — Resource Group and Network Setup
-🔄 Not started yet
+## Phase 1 — Resource Group and Network Setup ✅ COMPLETED
+
+### What I Did
+- Created resource group rg-lab-loadbalancer-04 in North Europe
+- Created Virtual Network vnet-lab-04 with address space 10.0.0.0/16
+- Added subnet snet-backend with range 10.0.1.0/24
+- This subnet will host both backend VMs
+
+### Settings I Used
+| Field | Value |
+|---|---|
+| Resource group | rg-lab-loadbalancer-04 |
+| VNet name | vnet-lab-04 |
+| Region | North Europe |
+| Address space | 10.0.0.0/16 |
+| Subnet name | snet-backend |
+| Subnet range | 10.0.1.0/24 |
+
+### Why One Subnet This Time
+In Lab 03 we had public and private subnets.
+In Lab 04 both VMs are in the same subnet because
+they both serve the same purpose — web servers.
+The Load Balancer sits in front of them handling
+the public traffic separation.
+
+### What I Learned
+- Load Balancer architecture needs VMs in same subnet
+- Backend pool VMs share the same network segment
+- VNet setup is the foundation for every Azure lab
+- Same CIDR concepts from Lab 03 apply here
+
+### Screenshots
+![Resource Group Created](screenshots/01-resource-group-created.png)
+![VNet Created](screenshots/02-vnet-created.png)
 
 ---
 
