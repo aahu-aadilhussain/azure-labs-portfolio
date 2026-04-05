@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/4c03d726-0fc2-482a-a38c-4a978a37da9e/resourceGroups/rg-lab-appservice-02/providers/Microsoft.Web/sites/aadil-azure-lab02",
+    "appService.deploySubpath": "Aadil's Lab02-AppService"
+}

@@ -45,7 +45,7 @@ When VM recovers — traffic resumes automatically
 ## Phase 1 — Resource Group and Network Setup ✅ COMPLETED
 
 ### What I Did
-- Created resource group rg-lab-loadbalancer-04 in North Europe
+- Created resource group rg-lab-loadbalancer-04 in East Asia
 - Created Virtual Network vnet-lab-04 with address space 10.0.0.0/16
 - Added subnet snet-backend with range 10.0.1.0/24
 - This subnet will host both backend VMs
@@ -55,7 +55,7 @@ When VM recovers — traffic resumes automatically
 |---|---|
 | Resource group | rg-lab-loadbalancer-04 |
 | VNet name | vnet-lab-04 |
-| Region | North Europe |
+| Region | East Asia |
 | Address space | 10.0.0.0/16 |
 | Subnet name | snet-backend |
 | Subnet range | 10.0.1.0/24 |
@@ -114,8 +114,8 @@ Fill at the end
 ## Cost Tracking
 | Resource | Cost |
 |---|---|
-| VM 1 Standard_B2ts_v2 | ~$0.01/hr |
-| VM 2 Standard_B2ts_v2 | ~$0.01/hr |
+| VM 1 Standard_B2ats_v2 | ~$0.01/hr |
+| VM 2 Standard_B2ats_v2 | ~$0.01/hr |
 | Load Balancer Standard | ~$0.025/hr |
 | Public IP | ~$0.004/hr |
 | Total for 2 hr lab | ~$0.10 |
