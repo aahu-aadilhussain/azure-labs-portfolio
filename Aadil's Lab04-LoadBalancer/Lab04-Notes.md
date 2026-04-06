@@ -79,8 +79,93 @@ the public traffic separation.
 
 ---
 
-## Phase 2 — Create Two Virtual Machines
-🔄 Not started yet
+## Phase 2 — Create Two Virtual Machines ✅ COMPLETED
+
+### What I Did
+- Created vm-backend-01 in East Asia
+- Selected Availability Set and created avset-lab-04
+- Set Public IP to None — VMs stay private
+- Tried Custom Script Extension for Nginx — provisioning failed
+- Used Run Command method instead — worked successfully
+- Created vm-backend-02 in same availability set avset-lab-04
+- Used Run Command to install Nginx on VM-02
+- Each VM shows different message to identify which one responds
+- Verified both VMs showing Running status
+
+### VM Settings Used
+| Field | VM-01 | VM-02 |
+|---|---|---|
+| Name | vm-backend-01 | vm-backend-02 |
+| Region | East Asia | East Asia |
+| Image | Ubuntu 24.04 LTS | Ubuntu 24.04 LTS |
+| Size | Standard_B2ats_v2 | Standard_B2ats_v2 |
+| Availability set | avset-lab-04 | avset-lab-04 |
+| Public IP | None | None |
+| Subnet | snet-backend | snet-backend |
+
+### Why No Public IP on VMs
+In a load balanced architecture the public IP belongs
+to the Load Balancer not the individual VMs.
+Users connect to the Load Balancer public IP.
+The Load Balancer forwards traffic to VMs privately.
+This hides the VMs from direct internet access
+which improves security significantly.
+
+### Why Availability Set
+An Availability Set ensures VMs run on different
+physical hardware in the data centre.
+Fault domains separate VMs across different server racks.
+Update domains ensure not all VMs restart at once
+during Azure maintenance operations.
+This guarantees at least one VM is always running.
+
+### Nginx Installation Method — Run Command
+Custom Script Extension failed with provisioning error.
+Used Run Command instead which is more reliable.
+Run Command is found under Operations in VM left sidebar.
+Select RunShellScript and paste the bash commands directly.
+
+### Commands Used to Install Nginx
+```bash
+sudo apt-get update -y
+sudo apt-get install -y nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
+echo '<h1>Hello from VM-01</h1><p>Azure Load Balancer Lab - Deployed by Aadil Hussain</p>' | sudo tee /var/www/html/index.html
+```
+
+### VM-01 Custom Page Content
+Hello from VM-01
+Azure Load Balancer Lab - Deployed by Aadil Hussain
+
+### VM-02 Custom Page Content
+Hello from VM-02
+Azure Load Balancer Lab - Deployed by Aadil Hussain
+
+### Problems I Faced
+| Problem | What I Tried | How I Fixed It |
+|---|---|---|
+| Custom Script Extension failed with provisioning error | Uninstalled and reinstalled extension | Used Run Command method instead which worked immediately |
+| VM created in wrong region North Europe | Deleted and recreated | Moved everything to East Asia where B2ats_v2 is available |
+
+### What I Learned
+- Availability Sets provide physical hardware redundancy
+- Fault domains separate VMs across different server racks
+- Update domains prevent all VMs restarting simultaneously
+- No public IP on backend VMs improves security
+- Custom Script Extension can fail — Run Command is more reliable
+- Run Command runs bash scripts directly on VM from portal
+- Both VMs must be in same VNet and subnet for load balancing
+- Different page content on each VM helps verify load balancing
+- Nginx runs on port 80 by default after installation
+
+### Screenshots
+![VM01 Validation](screenshots/03-vm01-validation.png)
+![VM01 Created](screenshots/04-vm01-created.png)
+![VM01 Nginx Installed](screenshots/05-vm01-nginx-installed.png)
+![VM02 Created](screenshots/07-vm02-created.png)
+![VM02 Nginx Installed](screenshots/08-vm02-nginx-installed.png)
+![Both VMs Running](screenshots/09-both-vms-running.png)
 
 ---
 
