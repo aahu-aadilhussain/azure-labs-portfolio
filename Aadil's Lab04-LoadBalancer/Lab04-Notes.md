@@ -169,8 +169,100 @@ Azure Load Balancer Lab - Deployed by Aadil Hussain
 
 ---
 
-## Phase 3 — Create the Load Balancer
-🔄 Not started yet
+## Phase 3 — Create the Load Balancer ✅ COMPLETED
+
+### What I Did
+- Navigated to Load Balancers in Azure Portal
+- Created lb-lab-04 with Standard SKU in East Asia
+- Added frontend IP configuration lb-frontend-ip
+- Created new public IP lb-public-ip
+- Created backend pool lb-backend-pool with both VMs
+- Added health probe inside the load balancing rule panel
+- Added load balancing rule lb-rule-http for port 80
+- Reviewed and created the Load Balancer successfully
+- Noted the public IP address for testing in Phase 4
+
+### Load Balancer Settings
+| Field | Value |
+|---|---|
+| Name | lb-lab-04 |
+| Region | East Asia |
+| SKU | Standard |
+| Type | Public |
+| Frontend IP | lb-frontend-ip |
+| Public IP | lb-public-ip |
+| Backend pool | lb-backend-pool |
+| VMs in pool | vm-backend-01 and vm-backend-02 |
+
+### Health Probe Settings
+| Field | Value |
+|---|---|
+| Name | lb-health-probe |
+| Protocol | HTTP |
+| Port | 80 |
+| Path | / |
+| Interval | 5 seconds |
+
+### Load Balancing Rule Settings
+| Field | Value |
+|---|---|
+| Name | lb-rule-http |
+| Frontend IP | lb-frontend-ip |
+| Backend pool | lb-backend-pool |
+| Protocol | TCP |
+| Frontend port | 80 |
+| Backend port | 80 |
+| Health probe | lb-health-probe |
+| Session persistence | None |
+
+### Load Balancer Components Explained
+| Component | Purpose |
+|---|---|
+| Frontend IP | The public IP address users connect to |
+| Backend pool | The group of VMs that receive traffic |
+| Health probe | Checks if each VM is healthy every 5 seconds |
+| LB Rule | Defines how traffic flows from frontend to backend |
+| Session persistence None | Round robin — each request goes to next VM |
+
+### How Health Probe Works
+Every 5 seconds Load Balancer sends HTTP request to port 80
+If VM responds — it is healthy — traffic continues
+If VM does not respond — marked unhealthy
+Traffic automatically stops going to unhealthy VM
+When VM recovers — traffic automatically resumes
+This is automatic failover with zero manual intervention
+
+### Important Note About Portal Version
+In the newer Azure Portal the health probe is created
+inside the load balancing rule panel rather than as
+a separate step. The unhealthy threshold field was
+not visible — Azure applies a sensible default value.
+This is normal behaviour in the updated portal UI.
+
+### My Load Balancer Public IP
+[13.75.50.75 (lb-public-ip)]
+
+### What I Learned
+- Load Balancer Standard SKU supports Availability Sets
+- Frontend IP is what users connect to publicly
+- Backend pool groups VMs that share the traffic load
+- Health probes ensure traffic only goes to healthy VMs
+- Session persistence None means round robin distribution
+- Round robin sends each request to next VM in rotation
+- Health probe is now created inside the LB rule in new portal
+- Standard SKU Load Balancer requires Standard public IP
+- Load Balancer creation takes about 2 minutes to complete
+
+### Problems I Faced
+| Problem | What I Tried | How I Fixed It |
+|---|---|---|
+| Health probe not showing as separate section | Scrolled through entire page | Found it inside the load balancing rule panel |
+| Unhealthy threshold field not visible | Looked through all fields | Left as default — Azure applies sensible value |
+
+### Screenshots
+![LB Validation](screenshots/10-lb-validation.png)
+![LB Created](screenshots/11-lb-created.png)
+![LB Public IP](screenshots/12-lb-public-ip.png)
 
 ---
 
