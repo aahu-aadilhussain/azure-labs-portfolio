@@ -266,8 +266,118 @@ This is normal behaviour in the updated portal UI.
 
 ---
 
-## Phase 4 — Test Load Balancing
-🔄 Not started yet
+## Phase 4 — Test Load Balancing ✅ COMPLETED
+
+### What I Did
+- Got Load Balancer public IP 13.75.50.75 from Azure Portal
+- Checked backend pool showing both VMs
+- Checked load balancing rules configured correctly
+- Discovered Nginx was not actually installed on VMs
+- Added temporary public IP to VM-01 to allow internet access
+- Successfully installed Nginx on VM-01 using Run Command
+- Added temporary public IP to VM-02 and installed Nginx
+- Removed temporary public IPs from both VMs after installation
+- Opened http://13.75.50.75 in browser and saw custom page
+- Refreshed multiple times to verify load balancing working
+- Stopped VM-01 to test automatic failover to VM-02
+- Confirmed all traffic automatically switched to VM-02
+- Started VM-01 again and confirmed both VMs serving traffic
+- Took all screenshots documenting the complete test
+
+### Load Balancer Public IP
+13.75.50.75
+
+### Test Results
+| Test | Expected Result | Actual Result |
+|---|---|---|
+| Open URL in browser | See VM-01 or VM-02 page | ✅ Saw custom page successfully |
+| Refresh multiple times | Alternates between VMs | ✅ Load balancer distributed traffic |
+| Stop VM-01 | All traffic goes to VM-02 | ✅ Automatic failover worked |
+| Start VM-01 again | Both VMs serving traffic | ✅ Automatic recovery confirmed |
+
+### Why Nginx Was Not Installed Initially
+When VMs are created with no public IP they have
+no outbound internet access by default in Azure.
+The apt-get command could not reach ubuntu package
+servers to download Nginx.
+Error message was:
+Could not connect to azure.archive.ubuntu.com:80
+Connection timed out
+
+### How I Fixed the Internet Access Problem
+Added a temporary Standard public IP to each VM
+through the Network Interface IP configuration page.
+This gave the VM outbound internet access temporarily.
+After Nginx was successfully installed the public IP
+was removed again to keep VMs private and secure.
+The Load Balancer still works because it uses the
+internal private IPs of the VMs not public IPs.
+
+### What High Availability Means in Practice
+When VM-01 was stopped the Load Balancer health probe
+detected it was not responding within 10 seconds.
+Traffic was automatically redirected to VM-02 only.
+No manual intervention was needed at any point.
+When VM-01 restarted traffic resumed automatically.
+Users visiting the website experienced zero downtime.
+This is what high availability looks like in production.
+
+### Round Robin Load Balancing Explained
+Session persistence is set to None — round robin mode.
+Request 1 → goes to VM-01
+Request 2 → goes to VM-02
+Request 3 → goes to VM-01
+Request 4 → goes to VM-02
+Each VM receives equal share of traffic automatically.
+Modern browsers cache connections so private or
+incognito windows show the switching more clearly.
+
+### Problems I Faced
+| Problem | What I Tried | How I Fixed It |
+|---|---|---|
+| Website not loading — connection timed out | Checked NSG rules | NSG was fine — Nginx was not installed |
+| Nginx not installed — unit not found | Ran install command | Command failed — VM had no internet access |
+| VM had no internet — no public IP | Tried apt-get update | Failed to connect to ubuntu archives |
+| Cannot download packages without internet | Considered NAT Gateway | Added temporary public IP to VM for installation |
+| Nginx install worked with temporary public IP | Verified with status | Removed temp public IP after installation |
+| Browser caching showing same VM | Refreshed multiple times | Used incognito window to see proper switching |
+
+### Architecture That Made This Work
+Internet Users
+↓
+Load Balancer Public IP: 13.75.50.75
+↓
+Health Probe checks port 80 every 5 seconds
+↓              ↓
+VM-01           VM-02
+Private IP      Private IP
+10.0.1.x        10.0.1.x
+Nginx running   Nginx running
+Hello VM-01     Hello VM-02
+
+### What I Learned
+- VMs with no public IP have no outbound internet by default
+- Temporary public IP can be added and removed from NIC
+- NAT Gateway is the proper enterprise solution for this
+- Load Balancer distributes traffic using round robin by default
+- Health probe detects unhealthy VMs within seconds
+- Failover is completely automatic — no manual steps needed
+- Recovery is also automatic when VM comes back online
+- Browser caching can make it appear same VM always responds
+- Using incognito window bypasses browser connection caching
+- Stopping a VM is a safe way to simulate server failure
+- Standard Load Balancer works with Availability Sets
+- This architecture eliminates single point of failure completely
+- Real production environments use NAT Gateway not temp public IPs
+
+### Screenshots
+![LB Public IP](screenshots/12-lb-public-ip.png)
+![Backend Pool VMs](screenshots/13-backend-pool-vms.png)
+![LB Rules](screenshots/14-lb-rules.png)
+![Website VM01 Response](screenshots/15-website-vm01-response.png)
+![Website VM02 Response](screenshots/16-website-vm02-response.png)
+![Failover VM02 Only](screenshots/17-failover-vm02-only.png)
+![VM01 Recovered](screenshots/18-vm01-recovered.png)
 
 ---
 
