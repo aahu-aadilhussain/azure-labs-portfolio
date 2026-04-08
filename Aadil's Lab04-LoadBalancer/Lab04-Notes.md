@@ -1,7 +1,9 @@
 # Lab 04 — Azure Load Balancer
 **Name:** Aadil Hussain
 **Date Started:** 3 April 2026
-**Status:** 🔄 In Progress
+**Date Completed:** 8 April 2026
+**Total Time Taken:** [5 DAYS]
+**Status:** ✅ COMPLETED
 
 ---
 
@@ -381,20 +383,92 @@ Hello VM-01     Hello VM-02
 
 ---
 
-## Phase 5 — Cleanup
-🔄 Not started yet
+## Phase 5 — Cleanup ✅ COMPLETED
+
+### What I Did
+- Took final screenshots of both VMs and Load Balancer
+- Took screenshot of all resources in resource group
+- Clicked Delete resource group on rg-lab-loadbalancer-04
+- Typed resource group name to confirm deletion
+- Ticked confirmation checkbox
+- Clicked red Delete button
+- Waited 5 minutes for all resources to be deleted
+- Confirmed rg-lab-loadbalancer-04 is gone from list
+- Checked Cost Management for credit usage
+
+### Resources Deleted
+| Resource | Type |
+|---|---|
+| vm-backend-01 | Virtual Machine |
+| vm-backend-02 | Virtual Machine |
+| lb-lab-04 | Load Balancer |
+| lb-public-ip | Public IP Address |
+| vnet-lab-04 | Virtual Network |
+| avset-lab-04 | Availability Set |
+| vm-backend-01-nsg | Network Security Group |
+| vm-backend-02-nsg | Network Security Group |
+| Network interfaces | NIC x2 |
+| OS disks | Managed Disk x2 |
+
+### Cost This Lab Used
+| Resource | Approx Rate | Hours | Cost |
+|---|---|---|---|
+| Standard_B2ats_v2 VM x2 | $0.009/hr each | ~3 hrs | ~$0.054 |
+| Standard Load Balancer | $0.025/hr | ~3 hrs | ~$0.075 |
+| Public IPs x2 temp | $0.004/hr each | ~1 hr | ~$0.008 |
+| Total | | | ~$0.14 |
+
+### What I Learned
+- More resources means longer deletion time
+- Resource group deletion removes everything at once
+- Standard Load Balancer has small hourly cost
+- Always delete Standard SKU resources immediately after lab
+- Temporary public IPs also incur small charges
+- Cost Management shows exact breakdown per resource
+
+### Screenshots
+![Both VMs Final](screenshots/19-both-vms-final.png)
+![LB Final Overview](screenshots/20-lb-final-overview.png)
+![All Resources Before Delete](screenshots/21-all-resources-before-delete.png)
+![Delete Confirmation](screenshots/22-delete-confirmation.png)
+![Cleanup Complete](screenshots/23-cleanup-complete.png)
+![Cost Analysis](screenshots/24-cost-analysis.png)
 
 ---
 
 ## Problems I Faced
 | Problem | What I Tried | How I Fixed It |
 |---|---|---|
-| Write here | Write here | Write here |
+| Created resource group and VNet in North Europe by mistake | Deleted and tried other regions | Moved everything to East Asia where B2ats_v2 is available |
+| Free tier VM size not available in any suggested region | Tried North Europe West Europe East US | Found Standard_B2ats_v2 free eligible in East Asia |
+| Custom Script Extension failed with provisioning error on VM-01 | Uninstalled and reinstalled extension | Used Run Command method instead which worked |
+| Nginx not installed — unit nginx.service could not be found | Ran systemctl status nginx | Confirmed Nginx was never installed despite earlier success message |
+| VM had no outbound internet — no public IP assigned | Tried apt-get update | Failed — could not connect to ubuntu package servers |
+| apt-get timed out connecting to azure.archive.ubuntu.com | Tried running command multiple times | Added temporary Standard public IP to VM NIC |
+| Nginx installed successfully after adding temp public IP | Verified with systemctl status | Removed temp public IP after installation completed |
+| Same issue repeated on VM-02 | Applied same fix | Added temp public IP installed Nginx then removed it |
+| Health probe tab not showing separately in new portal | Searched through all tabs | Found health probe is created inside load balancing rule panel |
+| Unhealthy threshold field not visible in new portal | Looked through all fields | Left as default — Azure applies sensible value automatically |
+| Website not loading — ERR CONNECTION TIMED OUT | Checked NSG rules — all correct | Root cause was Nginx not running — fixed by reinstalling |
+| Browser caching showing same VM response always | Refreshed multiple times | Used incognito window to bypass connection caching |
+
 
 ---
 
-## What I Learned
-Fill at the end
+## What I Learned — Full Summary
+
+- Load Balancer distributes traffic across multiple VMs
+- Health probes automatically detect unhealthy VMs
+- Automatic failover requires zero manual intervention
+- Availability Sets ensure VMs on different physical hardware
+- VMs with no public IP have no outbound internet by default
+- Temporary public IP can solve internet access for setup
+- NAT Gateway is proper enterprise solution for outbound access
+- Standard Load Balancer works with Availability Sets
+- Round robin distributes traffic equally across all VMs
+- High availability eliminates single point of failure
+- Browser caching affects load balancing test results
+- Incognito windows show true round robin behaviour
 
 ---
 
@@ -412,13 +486,23 @@ Fill at the end
 ## My Confidence Rating After This Lab
 | Skill | Before | After |
 |---|---|---|
-| Understanding load balancing | 1 | fill in |
-| Creating Azure Load Balancer | 1 | fill in |
-| Configuring backend pools | 1 | fill in |
-| Setting up health probes | 1 | fill in |
-| High availability concepts | 1 | fill in |
+| Understanding load balancing | 1 | 4 |
+| Creating Azure Load Balancer | 1 | 4 |
+| Configuring backend pools | 1 | 4 |
+| Setting up health probes | 1 | 3 |
+| High availability concepts | 1 | 4 |
+| Troubleshooting VM networking | 1 | 3 |
 
 ---
 
 ## What I Would Do Differently Next Time
-Fill at the end
+1. Add NAT Gateway before creating VMs so they have
+   outbound internet from the start without temp public IPs
+2. Verify Nginx is installed and running before creating
+   the Load Balancer to save troubleshooting time
+3. Test the website immediately after each VM is configured
+   before moving to the next step
+4. Use incognito window from the start when testing
+   load balancing to avoid browser caching issues
+5. Set up monitoring alerts on the Load Balancer to
+   get notified when a VM becomes unhealthy
