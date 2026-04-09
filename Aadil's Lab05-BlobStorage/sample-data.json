@@ -1,0 +1,7 @@
+{
+  "lab": "Azure Blob Storage",
+  "student": "Aadil Hussain",
+  "date": "10 April 2026",
+  "services": ["Storage Account", "Blob Container", "SAS Token"],
+  "status": "completed"
+}

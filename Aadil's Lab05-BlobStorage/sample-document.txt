@@ -1,0 +1,4 @@
+This is a sample document for Azure Blob Storage Lab 05.
+Created by Aadil Hussain — Azure 30-Day Challenge.
+Date: 10 April 2026
+Lab: Blob Storage and SAS Token demonstration.

@@ -121,8 +121,64 @@ More than enough for lab purposes.
 
 ---
 
-## Phase 2 — Create Containers and Upload Files
-🔄 Not started yet
+## Phase 2 — Create Containers and Upload Files ✅ COMPLETED
+
+### What I Did
+- Navigated to Containers under Data storage in sidebar
+- Created lab-private container with Private access
+- Created lab-public container with Blob anonymous access
+- Created lab-uploads container with Private access
+- Created 3 sample files in VS Code
+- Uploaded sample-document.txt to lab-private
+- Uploaded sample-data.json to lab-public
+- Uploaded both files to lab-uploads
+- Viewed blob properties including URL and metadata
+- Tested public blob — accessible in browser directly
+- Tested private blob — access denied as expected
+
+### Containers Created
+| Container | Access Level | Purpose |
+|---|---|---|
+| lab-private | Private | Secure storage — no public access |
+| lab-public | Blob anonymous | Public files anyone can access |
+| lab-uploads | Private | Upload staging area |
+
+### Files Created and Uploaded
+| File | Container | Type |
+|---|---|---|
+| sample-document.txt | lab-private and lab-uploads | Plain text |
+| sample-data.json | lab-public and lab-uploads | JSON data |
+| index.html | Used in Phase 4 for static website | HTML |
+
+### Access Level Differences
+| Level | Who Can Access | Use Case |
+|---|---|---|
+| Private | Only authorized users | Sensitive data |
+| Blob | Anyone with URL | Public files images |
+| Container | Anyone can list all blobs | Rarely used |
+
+### Blob URL Format
+https://[account].blob.core.windows.net/[container]/[blob]
+https://aadilstorage05.blob.core.windows.net/lab-public/sample-data.json
+
+### What I Learned
+- Containers are like folders inside a storage account
+- Access level is set per container not per blob
+- Private containers return error to anonymous users
+- Public blob containers allow direct URL access
+- Blob URL format is always account container filename
+- You can upload multiple files at once using Ctrl click
+- Blob properties show size content type tier and URL
+- Hot tier is default — for frequently accessed files
+
+### Screenshots
+![Containers Created](screenshots/05-containers-created.png)
+![File Uploaded Private](screenshots/06-file-uploaded-private.png)
+![File Uploaded Public](screenshots/07-file-uploaded-public.png)
+![Files Uploaded Uploads](screenshots/08-files-uploaded-uploads.png)
+![Blob Properties](screenshots/09-blob-properties.png)
+![Public Blob Accessible](screenshots/10-public-blob-accessible.png)
+![Private Blob Denied](screenshots/11-private-blob-denied.png)
 
 ---
 
