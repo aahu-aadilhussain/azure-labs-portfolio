@@ -58,8 +58,66 @@ Perfect for simple websites and documentation sites.
 
 ---
 
-## Phase 1 — Create Storage Account
-🔄 Not started yet
+## Phase 1 — Create Storage Account ✅ COMPLETED
+
+### What I Did
+- Created resource group rg-lab-storage-05 in East Asia
+- Navigated to Storage Accounts and clicked Create
+- Named storage account aadilstorage05
+- Selected Standard performance and LRS redundancy
+- Enabled anonymous access on Advanced tab
+- Left networking and data protection as default
+- Reviewed and created the storage account
+- Explored the storage account overview and services
+
+### Settings I Used
+| Field | Value |
+|---|---|
+| Resource group | rg-lab-storage-05 |
+| Storage account name | aadilstorage05 |
+| Region | East Asia |
+| Performance | Standard |
+| Redundancy | LRS — Locally Redundant Storage |
+| Anonymous access | Enabled |
+| TLS version | 1.2 |
+
+### Storage Redundancy Options Explained
+| Option | Copies | Where | Cost |
+|---|---|---|---|
+| LRS | 3 copies | Same data centre | Cheapest |
+| ZRS | 3 copies | Different zones same region | Medium |
+| GRS | 6 copies | Two different regions | Expensive |
+| GZRS | 6 copies | Zones and regions | Most expensive |
+
+### Why I Chose LRS
+LRS is the cheapest redundancy option.
+For a learning lab we do not need geo-redundancy.
+LRS gives 99.999999999% durability — 11 nines.
+That means 1 file loss per 100 billion files stored.
+More than enough for lab purposes.
+
+### Storage Account Services Available
+| Service | Purpose |
+|---|---|
+| Blob storage | Unstructured files — images videos documents |
+| File shares | SMB file shares — like network drives |
+| Queues | Message queuing for app communication |
+| Tables | NoSQL key-value storage |
+
+### What I Learned
+- Storage account is the top level container for all storage
+- Name must be globally unique — only lowercase and numbers
+- LRS is cheapest — keeps 3 copies in same data centre
+- Performance Standard uses HDD — Premium uses SSD
+- Anonymous access must be enabled at account level first
+- Then it can be enabled at individual container level
+- One storage account can host multiple storage services
+
+### Screenshots
+![Resource Group Created](screenshots/01-resource-group-created.png)
+![Storage Validation](screenshots/02-storage-validation.png)
+![Storage Account Created](screenshots/03-storage-account-created.png)
+![Storage Services](screenshots/04-storage-services.png)
 
 ---
 
