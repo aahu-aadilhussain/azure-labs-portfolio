@@ -1,7 +1,9 @@
 # Lab 05 — Azure Blob Storage
 **Name:** Aadil Hussain
 **Date Started:** 9 April 2026
-**Status:** 🔄 In Progress
+**Date Completed:** 10 April 2026
+**Total Time Taken:** [2 days]
+**Status:** ✅ COMPLETED
 
 ---
 
@@ -331,20 +333,78 @@ https://aadilstorage05.z23.web.core.windows.net/
 
 ---
 
-## Phase 5 — Cleanup
-🔄 Not started yet
+## Phase 5 — Cleanup ✅ COMPLETED
+
+### What I Did
+- Took final screenshots of containers and static website
+- Took screenshot of all resources in resource group
+- Clicked Delete resource group on rg-lab-storage-05
+- Typed resource group name to confirm deletion
+- Ticked confirmation checkbox
+- Clicked red Delete button
+- Waited 3 minutes for all resources to be deleted
+- Confirmed rg-lab-storage-05 is gone from list
+- Checked Cost Management for credit usage
+
+### Resources Deleted
+| Resource | Type |
+|---|---|
+| aadilstorage05 | Storage Account |
+| All containers | lab-private lab-public lab-uploads $web |
+| All uploaded files | sample-document.txt sample-data.json index.html 404.html |
+
+### Cost This Lab Used
+| Resource | Cost |
+|---|---|
+| Storage Account LRS | Less than $0.01 |
+| Blob operations | Fractions of a cent |
+| Static website hosting | Free |
+| Total | ~$0.01 |
+
+### What I Learned
+- Storage Account deletion removes all containers and blobs
+- Static website hosting is disabled when account is deleted
+- Blob Storage is extremely cheap for learning labs
+- Always delete storage accounts after labs to stay clean
+- Even free tier resources should be cleaned up regularly
+
+### Screenshots
+![All Containers Final](screenshots/25-all-containers-final.png)
+![Static Website Final](screenshots/26-static-website-final.png)
+![Resources Before Delete](screenshots/27-resources-before-delete.png)
+![Delete Confirmation](screenshots/28-delete-confirmation.png)
+![Cleanup Complete](screenshots/29-cleanup-complete.png)
+![Cost Analysis](screenshots/30-cost-analysis.png)
 
 ---
 
 ## Problems I Faced
 | Problem | What I Tried | How I Fixed It |
 |---|---|---|
-| Write here | Write here | Write here |
+| ReactView frame failed to load when creating storage account | Clicked Refresh button on error page | Hard refreshed with Ctrl+Shift+R and portal loaded correctly |
+| SAS token URL showing AuthenticationFailed error | Tested URL in InPrivate window multiple times | Generated SAS from inside blob properties tab not container level — $root was wrong path |
+| SAS URL contained $root instead of lab-uploads path | Regenerated SAS from container level | Navigated inside blob → clicked Generate SAS tab at top of blob properties |
+| Static website URL showing DNS_PROBE_FINISHED_NXDOMAIN | Typed URL manually from memory | Copied exact primary endpoint URL from Static website settings page |
+| 404 page not showing custom error page | Visited non-existent URL | Verified 404.html was uploaded to $web container and error document path was set correctly |
+| Confusion between container SAS and blob SAS | Generated from different places | Blob SAS is for one specific file — container SAS is for all files in container |
 
 ---
 
 ## What I Learned
-Fill at the end
+- Storage Account is the top level container for all storage
+- Blob Storage stores unstructured files as objects with URLs
+- LRS redundancy keeps 3 copies in same data centre cheaply
+- Containers control access — private or public per container
+- SAS tokens provide time-limited secure access to private files
+- SAS token has expiry time and cryptographic signature
+- Changing one character in SAS makes it completely invalid
+- Access keys are master keys — never share or hardcode them
+- Blob tiers — Hot Cool Cold Archive — control cost vs speed
+- Static website hosting serves HTML directly from $web container
+- Azure creates $web container automatically when enabled
+- Custom 404 pages improve user experience
+- Blob Storage is the cheapest way to host a static website
+- Storage metrics show requests and bandwidth usage
 
 ---
 
@@ -361,13 +421,20 @@ Fill at the end
 ## My Confidence Rating After This Lab
 | Skill | Before | After |
 |---|---|---|
-| Understanding Blob Storage | 1 | fill in |
-| Creating Storage Accounts | 1 | fill in |
-| Managing containers and blobs | 1 | fill in |
-| Generating SAS tokens | 1 | fill in |
-| Static website hosting | 1 | fill in |
+| Understanding Blob Storage | 1 | 4 |
+| Creating Storage Accounts | 1 | 4 |
+| Managing containers and blobs | 1 | 4 |
+| Generating SAS tokens | 1 | 4 |
+| Static website hosting | 1 | 3 |
 
 ---
 
 ## What I Would Do Differently Next Time
-Fill at the end
+1. Copy the exact primary endpoint URL from Static website
+   page before testing to avoid DNS errors
+2. Test SAS token immediately after generating while fresh
+3. Generate SAS from inside the blob properties page
+   not from container level to avoid $root errors
+4. Upload all files to $web before enabling static website
+5. Set up lifecycle management policies to auto-move
+   blobs from Hot to Cool after 30 days to save costs
