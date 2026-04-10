@@ -260,8 +260,74 @@ SAS token permissions can be read only — very safe
 
 ---
 
-## Phase 4 — Static Website Hosting
-🔄 Not started yet
+## Phase 4 — Static Website Hosting ✅ COMPLETED
+
+### What I Did
+- Navigated to Static website under Data management
+- Enabled static website hosting
+- Set index document to index.html
+- Set error document to 404.html
+- Saved settings and noted the primary endpoint URL
+- Found the automatically created $web container
+- Uploaded index.html to $web container
+- Visited the primary endpoint URL in browser
+- Saw my custom page live on the internet
+- Created custom 404.html error page
+- Uploaded 404.html to $web container
+- Tested custom 404 page by visiting non-existent URL
+- Explored Storage Metrics in Monitoring section
+
+### Static Website Settings
+| Field | Value |
+|---|---|
+| Status | Enabled |
+| Index document | index.html |
+| Error document | 404.html |
+| Primary endpoint | https://aadilstorage05.z7.web.core.windows.net/ |
+
+### Files Uploaded to $web Container
+| File | Purpose |
+|---|---|
+| index.html | Main home page |
+| 404.html | Custom error page |
+
+### How Static Website Hosting Works
+When enabled Azure creates a special $web container.
+Any files uploaded to $web are served as website files.
+Azure handles all the web serving automatically.
+No Nginx no App Service no VM needed.
+The URL format is always:
+storageaccount.z[number].web.core.windows.net
+
+### Comparison With Previous Labs
+| Method | Lab | Server Needed | Cost |
+|---|---|---|---|
+| VM with Nginx | Lab 01 | Yes — managed by me | ~$0.01/hr |
+| App Service | Lab 02 | No — managed by Azure | Free F1 |
+| Blob Static Website | Lab 05 | No — serverless | ~$0.00 |
+
+### What I Learned
+- Static website hosting is enabled at storage account level
+- Azure automatically creates $web container when enabled
+- Only files in $web container are served as website
+- Primary endpoint URL is provided automatically by Azure
+- Custom 404 page improves user experience
+- Blob Storage can host websites for almost zero cost
+- Static hosting works for HTML CSS JS only
+- Dynamic server-side code requires App Service or VM
+- Storage metrics show request counts and bandwidth usage
+- This is the cheapest way to host a simple website on Azure
+
+### My Live Website URL
+https://aadilstorage05.z23.web.core.windows.net/
+
+### Screenshots
+![Static Website Enabled](screenshots/19-static-website-enabled.png)
+![Web Container Created](screenshots/20-web-container-created.png)
+![Index Uploaded to Web](screenshots/21-index-uploaded-to-web.png)
+![Static Website Live](screenshots/22-static-website-live.png)
+![Custom 404 Page](screenshots/23-custom-404-page.png)
+![Storage Metrics](screenshots/24-storage-metrics.png)
 
 ---
 
