@@ -182,8 +182,81 @@ https://aadilstorage05.blob.core.windows.net/lab-public/sample-data.json
 
 ---
 
-## Phase 3 — Configure Access and SAS Tokens
-🔄 Not started yet
+## Phase 3 — Configure Access and SAS Tokens ✅ COMPLETED
+
+### What I Did
+- Navigated to lab-uploads container
+- Generated SAS token for sample-document.txt
+- Set permissions to Read only and expiry to 1 hour
+- Copied the Blob SAS URL
+- Tested SAS URL in InPrivate browser — file accessible
+- Modified SAS URL signature — got authentication failed
+- Generated container level SAS token for lab-uploads
+- Explored Access Control IAM for storage account
+- Viewed Access Keys page — kept keys hidden
+- Changed blob tier from Hot to Cool
+- Changed blob tier back to Hot
+
+### SAS Token Settings Used
+| Field | Value |
+|---|---|
+| Signing method | Account key |
+| Permissions | Read |
+| Expiry | 1 hour from generation |
+| Protocols | HTTPS only |
+
+### SAS URL Format
+https://aadilstorage05.blob.core.windows.net/
+lab-uploads/
+sample-document.txt
+?sv=2023-01-03
+&se=2026-04-05T...
+&sp=r
+&sig=XXXXXXXXXXXXXXXX
+
+### SAS URL Parameters Explained
+| Parameter | Meaning |
+|---|---|
+| sv | Storage version |
+| se | Signed expiry time |
+| sp | Signed permissions r=read w=write d=delete |
+| sig | Cryptographic signature |
+
+### Access Tiers Explained
+| Tier | Use Case | Storage Cost | Access Cost |
+|---|---|---|---|
+| Hot | Frequently accessed | Highest | Lowest |
+| Cool | Once per month | Medium | Medium |
+| Cold | Once per 90 days | Lower | Higher |
+| Archive | Rarely accessed | Lowest | Highest |
+
+### Why SAS Tokens Are Better Than Public Access
+Public container — anyone forever can access all files
+SAS token — specific person specific file specific time
+SAS token expires automatically — no cleanup needed
+SAS token can be revoked by rotating account keys
+SAS token permissions can be read only — very safe
+
+### What I Learned
+- SAS tokens provide time-limited access to private blobs
+- SAS URL contains expiry time and cryptographic signature
+- Changing one character in SAS invalidates it completely
+- Container SAS gives access to all blobs in container
+- Blob SAS gives access to one specific file only
+- Access keys are master keys — never share or hardcode
+- Use SAS tokens for sharing — never use access keys
+- Blob tiers control storage cost vs access cost tradeoff
+- Archive tier requires rehydration before accessing
+- IAM roles provide long term access management
+
+### Screenshots
+![SAS Token Generated](screenshots/12-sas-token-generated.png)
+![SAS URL Working](screenshots/13-sas-url-working.png)
+![Invalid SAS Denied](screenshots/14-invalid-sas-denied.png)
+![Container SAS Generated](screenshots/15-container-sas-generated.png)
+![Storage IAM Roles](screenshots/16-storage-iam-roles.png)
+![Access Keys Page](screenshots/17-access-keys-page.png)
+![Blob Tier Changed](screenshots/18-blob-tier-changed.png)
 
 ---
 
