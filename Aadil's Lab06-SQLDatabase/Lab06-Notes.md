@@ -156,8 +156,61 @@ Result: Current date and time confirmed connection working
 
 ---
 
-## Phase 3 — Create Tables and Insert Data
-🔄 Not started yet
+## Phase 3 — Create Tables and Insert Data ✅ COMPLETED
+
+### What I Did
+- Opened Query Editor in Azure Portal
+- Created Students table with 6 columns
+- Inserted 8 student records from different countries
+- Created Courses table with 5 columns
+- Inserted 8 course records with certification details
+- Verified both tables visible in left panel tree view
+- Confirmed all queries showed success messages
+
+### Tables Created
+| Table | Columns | Rows Inserted |
+|---|---|---|
+| Students | StudentID FirstName LastName Course EnrollDate Country | 8 |
+| Courses | CourseID CourseName Duration Level CertificationExam | 8 |
+
+### SQL Commands Used
+| Command | Purpose |
+|---|---|
+| CREATE TABLE | Creates new table structure in database |
+| INT PRIMARY KEY IDENTITY | Auto-incrementing unique ID column |
+| NVARCHAR(50) | Variable length text up to 50 characters |
+| NOT NULL | Field must always have a value |
+| DEFAULT GETDATE() | Auto fills current date on insert |
+| INSERT INTO | Adds new rows to existing table |
+| VALUES | Specifies the actual data to insert |
+
+### Data Inserted Into Students
+| StudentID | Name | Course | Country |
+|---|---|---|---|
+| 1 | Aadil Hussain | Azure Cloud Computing | Qatar |
+| 2 | Mohammed Ali | DevOps Engineering | UAE |
+| 3 | Sara Ahmed | Cloud Architecture | Saudi Arabia |
+| 4 | James Wilson | Azure Fundamentals | UK |
+| 5 | Fatima Khan | Cybersecurity | Pakistan |
+| 6 | Carlos Rodriguez | Data Engineering | Spain |
+| 7 | Priya Sharma | Machine Learning | India |
+| 8 | Ahmed Hassan | Network Engineering | Egypt |
+
+### What I Learned
+- Query Editor runs T-SQL directly in browser no software needed
+- CREATE TABLE defines structure before data can be inserted
+- IDENTITY auto-increments primary key — no need to specify ID
+- DEFAULT GETDATE fills enrollment date automatically on insert
+- NOT NULL prevents empty values in required fields
+- Multiple rows inserted in single INSERT statement efficiently
+- Tables appear in left panel tree view after creation
+- dbo prefix means database owner — default schema in SQL Server
+
+### Screenshots
+![Table Created](screenshots/05-table-created.png)
+![Data Inserted](screenshots/06-data-inserted.png)
+![Courses Table Created](screenshots/07-courses-table-created.png)
+![Tables Visible](screenshots/08-tables-visible.png)
 
 ---
 
