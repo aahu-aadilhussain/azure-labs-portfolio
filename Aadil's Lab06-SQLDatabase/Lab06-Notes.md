@@ -39,8 +39,69 @@ This prevents unauthorized access from anywhere.
 
 ---
 
-## Phase 1 — Create SQL Server and Database
-🔄 Not started yet
+## Phase 1 — Create SQL Server and Database ✅ COMPLETED
+### What I Did
+- Created resource group rg-lab-sql-06 in East Asia
+- Navigated to SQL databases and clicked Create
+- Selected SQL Database free offer option
+- Created new SQL Server sqlsrv-aadil-06 with SQL authentication
+- Set admin login as sqladmin with strong password
+- Left compute and storage as free offer defaults
+- Selected locally redundant backup storage
+- Enabled public endpoint and added client IP address
+- Waited 5 minutes for deployment to complete
+- Clicked Go to resource and explored overview page
+
+### Settings I Used
+| Field | Value |
+|---|---|
+| Resource group | rg-lab-sql-06 |
+| Database offer | SQL Database free offer |
+| Database name | db-lab-06 |
+| Server name | sqlsrv-aadil-06 |
+| Location | East Asia |
+| Auth method | SQL authentication |
+| Admin login | sqladmin |
+| Password | P@ssw0rd123! |
+| Compute tier | Free offer default |
+| Backup redundancy | Locally redundant |
+| Connectivity | Public endpoint |
+
+### Free Offer vs Paid Tiers
+| Option | Cost | Storage | Best For |
+|---|---|---|---|
+| Free offer | $0.00 | 32 GB | Learning and development |
+| Basic 5 DTU | ~$0.02/hr | 2 GB | Small production apps |
+| Standard S0 | ~$0.10/hr | 250 GB | Medium apps |
+| Premium P1 | ~$0.93/hr | 500 GB | High performance apps |
+
+### Why I Chose Free Offer
+The free offer is completely free for 12 months.
+It provides full SQL functionality for learning.
+Only one free database allowed per subscription.
+Perfect for lab purposes — zero cost to my credit.
+No DTU configuration needed — Azure handles it.
+
+### SQL Server vs SQL Database Explained
+SQL Server is the logical server — like a building.
+It holds the admin credentials and firewall rules.
+SQL Database is the actual database — like a room.
+One SQL Server can host multiple SQL Databases.
+Deleting the resource group removes both together.
+
+### What I Learned
+- Azure SQL Database is fully managed PaaS database
+- Free offer gives complete SQL functionality at zero cost
+- SQL Server is logical container — not a physical server
+- Basic authentication uses username and password
+- Public endpoint allows browser-based Query Editor access
+- Locally redundant backup keeps copies in same data centre
+- Microsoft handles all patching backups and high availability
+- Free offer is limited to one database per subscription
+
+### Screenshots
+![SQL Database Created](screenshots/01-sql-database-created.png)
+![SQL Database Overview](screenshots/02-sql-database-overview.png)
 
 ---
 
