@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "subscriptionId": {
+            "value": "4c03d726-0fc2-482a-a38c-4a978a37da9e"
+        },
+        "resourceGroupName": {
+            "value": "rg-lab-sql-06"
+        },
+        "location": {
+            "value": "eastasia"
+        },
+        "databaseName": {
+            "value": "db-lab-06"
+        },
+        "collation": {
+            "value": "SQL_Latin1_General_CP1_CI_AS"
+        },
+        "skuName": {
+            "value": "GP_S_Gen5_2"
+        },
+        "tier": {
+            "value": "GeneralPurpose"
+        },
+        "maxSizeBytes": {
+            "value": 34359738368
+        },
+        "zoneRedundant": {
+            "value": false
+        },
+        "readScaleOut": {
+            "value": "Disabled"
+        },
+        "numberOfReplicas": {
+            "value": 0
+        },
+        "minCapacity": {
+            "value": "0.5"
+        },
+        "autoPauseDelay": {
+            "value": 60
+        },
+        "enableSqlLedger": {
+            "value": false
+        },
+        "availabilityZone": {
+            "value": "NoPreference"
+        },
+        "useFreeLimit": {
+            "value": true
+        },
+        "freeLimitExhaustionBehavior": {
+            "value": "AutoPause"
+        },
+        "serverName": {
+            "value": "sqlsrv-aadil-06"
+        },
+        "administratorLogin": {
+            "value": "sqladmin"
+        },
+        "administratorLoginPassword": {
+            "value": null
+        },
+        "allowAzureIps": {},
+        "publicNetworkAccess": {},
+        "minimalTlsVersion": {
+            "value": "1.2"
+        }
+    }
+}

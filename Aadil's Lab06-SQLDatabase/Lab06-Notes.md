@@ -105,8 +105,54 @@ Deleting the resource group removes both together.
 
 ---
 
-## Phase 2 — Configure Firewall and Connect
-🔄 Not started yet
+## Phase 2 — Configure Firewall and Connect ✅ COMPLETED
+
+### What I Did
+- Navigated to SQL Server sqlsrv-aadil-06 from database overview
+- Opened Networking under Security in left sidebar
+- Enabled public network access for selected networks
+- Added my client IPv4 address to firewall rules
+- Ticked Allow Azure services and resources checkbox
+- Saved firewall settings successfully
+- Went back to SQL Database db-lab-06
+- Opened Query Editor from left sidebar
+- Logged in with sqladmin and password
+- Ran test query SELECT GETDATE() to verify connection
+- Confirmed database is working correctly
+
+### Firewall Settings Configured
+| Setting | Value |
+|---|---|
+| Public network access | Selected networks enabled |
+| Client IP address | Added automatically |
+| Allow Azure services | Yes — ticked |
+
+### Why Each Firewall Setting Matters
+| Setting | Why Needed |
+|---|---|
+| Public network access | Allows connections from internet |
+| Client IP address | Allows your specific PC to connect |
+| Allow Azure services | Allows Query Editor in portal to connect |
+
+### Test Query Run
+```sql
+SELECT GETDATE() AS CurrentDateTime;
+```
+Result: Current date and time confirmed connection working
+
+### What I Learned
+- Azure SQL blocks ALL connections by default for security
+- Three separate settings needed for full access
+- Client IP must be added explicitly — not automatic
+- Allow Azure services enables browser based Query Editor
+- Query Editor is free built in browser SQL tool
+- GETDATE is T-SQL function returning current timestamp
+- Connection confirmed before moving to next phase
+
+### Screenshots
+![Firewall Configured](screenshots/03-firewall-configured.png)
+![Query Editor Open](screenshots/04-query-editor-open.png)
+![Test Query Success](screenshots/04b-test-query-success.png)
 
 ---
 

@@ -1,0 +1,154 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceGroupName": {
+            "type": "string"
+        },
+        "subscriptionId": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "tags": {
+            "type": "object",
+            "defaultValue": {}
+        },
+        "collation": {
+            "type": "string"
+        },
+        "databaseName": {
+            "type": "string"
+        },
+        "tier": {
+            "type": "string"
+        },
+        "skuName": {
+            "type": "string"
+        },
+        "maxSizeBytes": {
+            "type": "int"
+        },
+        "zoneRedundant": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "readScaleOut": {
+            "type": "string",
+            "defaultValue": "Disabled"
+        },
+        "numberOfReplicas": {
+            "type": "int",
+            "defaultValue": 0
+        },
+        "minCapacity": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "autoPauseDelay": {
+            "type": "int",
+            "defaultValue": 0
+        },
+        "enableSqlLedger": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "availabilityZone": {
+            "type": "string",
+            "defaultValue": "NoPreference"
+        },
+        "useFreeLimit": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "freeLimitExhaustionBehavior": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "serverName": {
+            "type": "string"
+        },
+        "minimalTlsVersion": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "publicNetworkAccess": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "allowAzureIps": {
+            "type": "bool",
+            "defaultValue": true
+        },
+        "administrators": {
+            "type": "object",
+            "defaultValue": {}
+        },
+        "administratorLogin": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "administratorLoginPassword": {
+            "type": "secureString",
+            "defaultValue": ""
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Sql/servers",
+            "apiVersion": "2024-11-01-preview",
+            "name": "[parameters('serverName')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "version": "12.0",
+                "minimalTlsVersion": "[parameters('minimalTlsVersion')]",
+                "publicNetworkAccess": "[parameters('publicNetworkAccess')]",
+                "administratorLogin": "[parameters('administratorLogin')]",
+                "administratorLoginPassword": "[parameters('administratorLoginPassword')]"
+            },
+            "resources": [
+                {
+                    "condition": "[parameters('allowAzureIps')]",
+                    "type": "firewallrules",
+                    "apiVersion": "2024-11-01-preview",
+                    "name": "AllowAllWindowsAzureIps",
+                    "location": "[parameters('location')]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
+                    ],
+                    "properties": {
+                        "startIpAddress": "0.0.0.0",
+                        "endIpAddress": "0.0.0.0"
+                    }
+                },
+                {
+                    "type": "databases",
+                    "apiVersion": "2024-11-01-preview",
+                    "name": "[parameters('databaseName')]",
+                    "location": "[parameters('location')]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
+                    ],
+                    "properties": {
+                        "collation": "[parameters('collation')]",
+                        "maxSizeBytes": "[parameters('maxSizeBytes')]",
+                        "zoneRedundant": "[parameters('zoneRedundant')]",
+                        "readScale": "[parameters('readScaleOut')]",
+                        "highAvailabilityReplicaCount": "[parameters('numberOfReplicas')]",
+                        "minCapacity": "[parameters('minCapacity')]",
+                        "autoPauseDelay": "[parameters('autoPauseDelay')]",
+                        "isLedgerOn": "[parameters('enableSqlLedger')]",
+                        "availabilityZone": "[parameters('availabilityZone')]",
+                        "useFreeLimit": "[parameters('useFreeLimit')]",
+                        "freeLimitExhaustionBehavior": "[parameters('freeLimitExhaustionBehavior')]"
+                    },
+                    "sku": {
+                        "name": "[parameters('skuName')]",
+                        "tier": "[parameters('tier')]"
+                    }
+                }
+            ]
+        }
+    ]
+}
