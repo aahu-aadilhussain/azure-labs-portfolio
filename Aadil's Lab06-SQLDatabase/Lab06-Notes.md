@@ -1,15 +1,17 @@
 # Lab 06 — Azure SQL Database
 **Name:** Aadil Hussain
 **Date Started:** 11 April 2026
-**Status:** 🔄 In Progress
+**Date Completed:** 12 April 2026
+**Total Time Taken:** [2 Days]
+**Status:** ✅ COMPLETED
 
 ---
 
-## What I Am Building
-A managed Azure SQL Database with a logical SQL Server.
-I will create tables, insert data, run queries using
-the Azure Portal Query Editor, and configure firewall
-rules to control access.
+## What I Built
+A fully managed Azure SQL Database using the free offer.
+Created two tables — Students and Courses — inserted data
+and ran SQL queries including SELECT WHERE JOIN and UPDATE.
+Configured firewall rules and used the built in Query Editor.
 
 ---
 
@@ -30,7 +32,8 @@ One SQL Server can host multiple SQL Databases.
 DTU — Database Transaction Unit — simple pricing model.
 Basic tier uses DTUs — cheapest option for learning.
 vCore — more control over CPU and memory — more expensive.
-For labs always use Basic DTU tier.
+Free offer gives full functionality at zero cost.
+
 
 ### Firewall Rules
 By default no one can connect to Azure SQL Database.
@@ -276,42 +279,106 @@ Result: Current date and time confirmed connection working
 
 ---
 
-## Phase 5 — Cleanup
-🔄 Not started yet
+## Phase 5 — Cleanup ✅ COMPLETED
+
+### What I Did
+- Took final screenshots of database overview and resources
+- Navigated to Resource Groups in Azure Portal
+- Opened rg-lab-sql-06 and confirmed all resources inside
+- Clicked Delete resource group at the top
+- Typed rg-lab-sql-06 to confirm deletion
+- Ticked the confirmation checkbox
+- Clicked red Delete button
+- Waited 3-5 minutes for deletion to complete
+- Confirmed rg-lab-sql-06 is gone from resource groups list
+- Checked Cost Management for credit usage
+
+### Resources Deleted
+| Resource | Type |
+|---|---|
+| db-lab-06 | SQL Database |
+| sqlsrv-aadil-06 | SQL Server |
+
+### Cost This Lab Used
+| Resource | Cost |
+|---|---|
+| SQL Database free offer | $0.00 completely free |
+| SQL Server logical container | $0.00 free |
+| Total | $0.00 |
+
+### What I Learned
+- Always delete SQL Database immediately after lab
+- SQL Server gets deleted with resource group
+- SQL Database (free offer)
+   Completely FREE
+   No cost from your credit
+   Full SQL functionality
+   Perfect for learning labs
+   No need to worry about DTU costs
+- Cost Management shows exact resource costs
+
+### Screenshots
+![Final Database Overview](screenshots/14-final-database-overview.png)
+![Resources Before Delete](screenshots/15-resources-before-delete.png)
+![Delete Confirmation](screenshots/16-delete-confirmation.png)
+![Cleanup Complete](screenshots/17-cleanup-complete.png)
+![Cost Analysis](screenshots/18-cost-analysis.png)
 
 ---
 
 ## Problems I Faced
 | Problem | What I Tried | How I Fixed It |
 |---|---|---|
-| Write here | Write here | Write here |
+| Saw two options SQL Database and SQL Database free offer | Was unsure which to choose | Selected free offer — completely free and full functionality |
+| Query Editor left panel not showing tables immediately | Looked through explorer panel | Clicked arrow next to dbo to expand and see tables |
+| Multiple query tabs opened in Query Editor | Accidentally clicked New query multiple times | Used specific tab for each query — SQL query 1 2 3 4 |
+| Forgot to expand dbo folder to see tables | Tried to find tables in root | Clicked dbo arrow — Tables folder appeared with both tables |
 
 ---
 
 ## What I Learned
-Fill at the end
+- Azure SQL Database is fully managed PaaS database service
+- SQL Server is logical container — SQL Database is actual database
+- Free offer gives complete SQL functionality at zero cost
+- Firewall rules must be added for every IP that needs access
+- Allow Azure services setting enables browser Query Editor
+- Query Editor allows SQL execution directly in browser
+- CREATE TABLE defines structure — INSERT adds data rows
+- SELECT WHERE GROUP BY JOIN UPDATE are core SQL commands
+- IDENTITY auto-increments primary key automatically
+- Connection strings allow applications to connect to database
+- Microsoft handles all patching backups and high availability
+- DELETE resource group removes SQL Server and Database together
+- Always use WHERE clause with UPDATE to avoid changing all rows
+- JOIN combines related tables using matching column values
 
 ---
 
 ## Cost Tracking
 | Resource | Cost |
 |---|---|
-| SQL Server | Free — logical container only |
-| SQL Database Basic 5 DTU | ~$0.02/hr |
-| Total for 90 min lab | ~$0.03 |
+| SQL Database free offer | $0.00 completely free |
+| SQL Server logical container | $0.00 free |
+| Total | $0.00 |
 
 ---
 
 ## My Confidence Rating After This Lab
 | Skill | Before | After |
 |---|---|---|
-| Understanding managed databases | 1 | fill in |
-| Creating Azure SQL resources | 1 | fill in |
-| Writing SQL queries | 1 | fill in |
-| Configuring firewall rules | 1 | fill in |
-| Using Query Editor | 1 | fill in |
+| Understanding managed databases | 1 | 4 |
+| Creating Azure SQL resources | 1 | 4 |
+| Writing SQL queries | 1 | 3 |
+| Configuring firewall rules | 1 | 4 |
+| Using Query Editor | 1 | 4 |
 
 ---
 
 ## What I Would Do Differently Next Time
-Fill at the ends
+1. Add firewall rule before trying to connect to save time
+2. Test connection immediately after database creation
+3. Create both tables before inserting any data
+4. Save all SQL queries to a .sql file for future reference
+5. Explore backup and restore options during the lab
+6. Select free offer immediately without hesitation
+7. Expand dbo folder first to verify tables were created
