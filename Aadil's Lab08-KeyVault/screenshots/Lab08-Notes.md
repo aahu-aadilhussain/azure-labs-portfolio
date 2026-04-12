@@ -154,8 +154,51 @@ Password never appears in code or GitHub
 
 ---
 
-## Phase 3 — Configure Access Policies
-🔄 Not started yet
+## Phase 3 — Configure Access Policies ✅ COMPLETED
+
+### What I Did
+- Viewed current role assignments on Key Vault
+- Created KV Test User in Microsoft Entra ID
+- Assigned Key Vault Secrets User role to KV Test User
+- Understood differences between Key Vault RBAC roles
+- Confirmed role assignments are visible in IAM page
+
+### Key Vault Roles Configured
+| User | Role | Can Read | Can Write | Can Delete |
+|---|---|---|---|---|
+| My Account | Key Vault Administrator | ✅ | ✅ | ✅ |
+| KV Test User | Key Vault Secrets User | ✅ | ❌ | ❌ |
+
+### Key Vault RBAC Roles Explained
+| Role | Purpose |
+|---|---|
+| Key Vault Administrator | Full control of vault and all objects |
+| Key Vault Secrets Officer | Manage secrets but not vault settings |
+| Key Vault Secrets User | Read secret values only |
+| Key Vault Reader | Read metadata but not secret values |
+| Key Vault Crypto Officer | Manage keys but not secrets |
+
+### Why Least Privilege Matters in Key Vault
+An application only needs to READ secrets.
+Give it Key Vault Secrets User role only.
+Even if the app is compromised the attacker
+cannot delete or modify secrets in the vault.
+This limits the damage from a security breach.
+
+### What I Learned
+- Key Vault has specific roles for fine grained access
+- Key Vault Secrets User can only read secret values
+- Key Vault Administrator has complete control
+- Assign minimum required role for each user or app
+- RBAC roles on Key Vault integrate with Entra ID users
+- Role assignments take effect within minutes
+- Separate roles exist for secrets keys and certificates
+
+### Screenshots
+![Current Access](screenshots/08-current-access.png)
+![KV Test User Created](screenshots/09-kv-test-user-created.png)
+![Secrets User Role Assigned](screenshots/10-secrets-user-role-assigned.png)
+![KV Roles Comparison](screenshots/11-kv-roles-comparison.png)
 
 ---
 
