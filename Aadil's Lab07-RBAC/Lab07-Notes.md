@@ -1,9 +1,9 @@
 # Lab 07 — Azure RBAC and Identity Management
 **Name:** Aadil Hussain
 **Date Started:** 12 April 2026
-**Date Completed:** in progress
-**Total Time Taken:** [fill in]
-**Status:** 🔄 In Progress
+**Date Completed:** 12 April 2026
+**Total Time Taken:** [1 day]
+**Status:** ✅ COMPLETED
 
 ---
 
@@ -227,20 +227,65 @@ manage who has access to resources.
 
 ---
 
-## Phase 5 — Cleanup
-🔄 Not started yet
+## Phase 5 — Cleanup ✅ COMPLETED
+
+### What I Did
+- Deleted Test User 01 from Microsoft Entra ID
+- Deleted resource group rg-lab-rbac-07
+- Confirmed all resources are gone
+- Checked cost — RBAC is completely free
+
+### Resources Deleted
+| Resource | Type |
+|---|---|
+| testuser01 | Entra ID User |
+| rg-lab-rbac-07 | Resource Group |
+| aadilrbac07 | Storage Account |
+
+### Cost This Lab Used
+| Resource | Cost |
+|---|---|
+| Microsoft Entra ID | $0.00 — always free |
+| RBAC assignments | $0.00 — always free |
+| Storage Account LRS | ~$0.001 |
+| Total | ~$0.001 |
+
+### What I Learned
+- RBAC and Entra ID are completely free services
+- Deleting user removes all their role assignments too
+- Resource group deletion removes storage account inside
+- Always delete test users after security testing labs
+- RBAC is one of the most cost effective security tools
+
+### Screenshots
+![Test User Deleted](screenshots/12-test-user-deleted.png)
+![Delete Confirmation](screenshots/13-delete-confirmation.png)
+![Cleanup Complete](screenshots/14-cleanup-complete.png)
 
 ---
 
 ## Problems I Faced
 | Problem | What I Tried | How I Fixed It |
 |---|---|---|
-| Write here | Write here | Write here |
+| Temporary password not visible after user creation | Looked through user overview page | Clicked Reset password button to generate and copy new temporary password |
+| Test user could not sign in with temporary password | Tried typing password carefully and it worked | Azure requires password change on first login — set new password and it worked |
+
 
 ---
 
 ## What I Learned
-Fill at the end
+- RBAC controls who can do what on which Azure resources
+- Every assignment has three parts — principal role scope
+- Microsoft Entra ID manages user identities for Azure
+- Reader role allows viewing but prevents all modifications
+- Principle of least privilege reduces security risk significantly
+- InPrivate window allows testing as a different user account
+- Hundreds of built in roles cover all Azure service scenarios
+- Role definitions use Actions and NotActions to define permissions
+- Owner is only role that can manage access assignments
+- RBAC assignments take effect within minutes of creation
+- Testing role assignments is essential to verify security
+- Entra ID users have no Azure access until explicitly assigned
 
 ---
 
@@ -257,13 +302,17 @@ Fill at the end
 ## My Confidence Rating After This Lab
 | Skill | Before | After |
 |---|---|---|
-| Understanding RBAC concepts | 1 | fill in |
-| Creating Entra ID users | 1 | fill in |
-| Assigning roles at different scopes | 1 | fill in |
-| Verifying least privilege | 1 | fill in |
-| Understanding role definitions | 1 | fill in |
+| Understanding RBAC concepts | 1 | 4 |
+| Creating Entra ID users | 1 | 4 |
+| Assigning roles at different scopes | 1 | 4 |
+| Verifying least privilege | 1 | 4 |
+| Understanding role definitions | 1 | 3 |
 
 ---
 
 ## What I Would Do Differently Next Time
-Fill at the end
+1. Note the temporary password immediately after user creation
+2. Test role assignments immediately after assigning them
+3. Explore custom role creation for more advanced learning
+4. Assign roles at subscription level to see broader scope
+5. Test Contributor role as well to compare with Reader
