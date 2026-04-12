@@ -177,8 +177,53 @@ This is the principle of least privilege working correctly.
 
 ---
 
-## Phase 4 — Explore Role Definitions
-🔄 Not started yet
+## Phase 4 — Explore Role Definitions ✅ COMPLETED
+
+### What I Did
+- Opened Roles tab in Access Control IAM page
+- Viewed hundreds of built in Azure roles available
+- Clicked Contributor role to see detailed permissions
+- Clicked Reader role to see read only permissions
+- Viewed my own role assignments using My access tab
+
+### Key Built In Roles Explored
+| Role | Actions Allowed | Actions Denied |
+|---|---|---|
+| Owner | Everything including access management | Nothing |
+| Contributor | Create and manage all resources | Grant or revoke access |
+| Reader | Read everything | Any write or delete action |
+| Storage Blob Data Contributor | Read write delete blobs | Manage storage account settings |
+
+### How Role Definitions Work
+Each role has Actions — what IS allowed.
+Each role has NotActions — what is NOT allowed.
+DataActions — actions on data inside resources.
+NotDataActions — data actions that are excluded.
+Azure evaluates all these together to determine access.
+
+### Example — Contributor Role
+Actions: * means everything
+NotActions:
+  Microsoft.Authorization/*/Delete
+  Microsoft.Authorization/*/Write
+This means Contributor can do everything EXCEPT
+manage who has access to resources.
+
+### What I Learned
+- Azure has hundreds of built in roles for specific services
+- Role definitions show exact permissions using Actions
+- NotActions explicitly deny specific permissions
+- Owner is the only role that can manage access assignments
+- Contributor cannot grant themselves or others more access
+- Reader uses wildcard read — means read on ALL resources
+- Custom roles can be created combining specific permissions
+- My access tab shows your own current role assignments
+
+### Screenshots
+![Roles List](screenshots/08-roles-list.png)
+![Contributor Role Details](screenshots/09-contributor-role-details.png)
+![Reader Role Details](screenshots/10-reader-role-details.png)
+![My Access](screenshots/11-my-access.png)
 
 ---
 
