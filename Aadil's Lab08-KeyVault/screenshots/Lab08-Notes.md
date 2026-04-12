@@ -98,8 +98,59 @@ Can assign roles at vault or secret level.
 
 ---
 
-## Phase 2 — Add Secrets and Keys
-🔄 Not started yet
+## Phase 2 — Add Secrets and Keys ✅ COMPLETED
+
+### What I Did
+- Navigated to Secrets under Objects in Key Vault sidebar
+- Added db-password secret with database password value
+- Added api-key secret with API key value
+- Added db-connection-string with full connection string
+- Navigated to Keys under Objects
+- Generated RSA 2048 bit encryption key
+- Verified all 3 secrets and 1 key are listed
+
+### Secrets Added
+| Secret Name | Type | Purpose |
+|---|---|---|
+| db-password | text/plain | Database admin password |
+| api-key | text/plain | External API authentication key |
+| db-connection-string | text/plain | Full database connection string |
+
+### Keys Added
+| Key Name | Type | Size | Purpose |
+|---|---|---|---|
+| encryption-key-01 | RSA | 2048 bit | Data encryption and signing |
+
+### Secrets vs Keys vs Certificates
+| Object | What it stores | Example |
+|---|---|---|
+| Secret | Any sensitive text value | Password API key |
+| Key | Cryptographic key material | RSA AES key |
+| Certificate | SSL TLS certificate | HTTPS certificate |
+
+### Why This Is Better Than Code
+Bad practice — hardcoded in code:
+password = "MyDatabaseP@ssw0rd123!"
+If pushed to GitHub — password is exposed forever
+
+Good practice — retrieved from Key Vault:
+password = keyvault.get_secret("db-password")
+Password never appears in code or GitHub
+
+### What I Learned
+- Secrets store any sensitive text value securely
+- Keys store cryptographic material for encryption
+- Certificates store SSL TLS certificates for HTTPS
+- Secret values are hidden by default in portal
+- Must click Show to reveal secret value
+- Secrets can have expiration dates for rotation
+- Each secret has a version history for auditing
+- Key Vault logs every access attempt automatically
+
+### Screenshots
+![Secret DB Password](screenshots/05-secret-db-password.png)
+![All Secrets Listed](screenshots/06-all-secrets-listed.png)
+![Key Created](screenshots/07-key-created.png)
 
 ---
 
