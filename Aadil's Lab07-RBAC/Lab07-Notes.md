@@ -135,8 +135,45 @@ The free tier supports unlimited users and groups.
 
 ---
 
-## Phase 3 — Test Access as Test User
-🔄 Not started yet
+## Phase 3 — Test Access as Test User ✅ COMPLETED
+
+### What I Did
+- Opened InPrivate Edge window to simulate different user
+- Signed in as testuser01 with temporary password
+- Changed temporary password on first login
+- Navigated to rg-lab-rbac-07 resource group
+- Tried to create a resource — got permission denied
+- Confirmed user can VIEW resources but not create them
+- Signed out Test User 01 from InPrivate window
+
+### Test Results
+| Action | Expected | Actual | Result |
+|---|---|---|---|
+| View resource group | Allowed — Reader | Could see rg-lab-rbac-07 | ✅ Pass |
+| View storage account | Allowed — Reader | Could see aadilrbac07 | ✅ Pass |
+| Create new resource | Denied — Reader | Permission denied error | ✅ Pass |
+| Delete resource | Denied — Reader | Not possible | ✅ Pass |
+
+### What Principle of Least Privilege Means in Practice
+Test User 01 has Reader role only.
+They can see everything in the resource group.
+They cannot create delete or modify anything.
+This means even if their account is compromised
+an attacker cannot damage or delete resources.
+This is the principle of least privilege working correctly.
+
+### What I Learned
+- InPrivate window allows testing as different user
+- Temporary passwords must be changed on first login
+- Reader role truly restricts to view only access
+- Permission denied appears when trying to create
+- RBAC roles take effect immediately after assignment
+- Testing role assignments verifies security is working
+- Least privilege reduces blast radius of compromised accounts
+
+### Screenshots
+![Reader Cannot Create](screenshots/06-reader-cannot-create.png)
+![Reader Can View](screenshots/07-reader-can-view.png)
 
 ---
 
