@@ -51,8 +51,41 @@ Every Azure subscription has one Entra ID tenant.
 
 ---
 
-## Phase 1 — Create Test User in Entra ID
-🔄 Not started yet
+## Phase 1 — Create Test User in Entra ID ✅ COMPLETED
+
+### What I Did
+- Navigated to Microsoft Entra ID in Azure Portal
+- Clicked Users under Manage section
+- Created new user testuser01 with auto generated password
+- Noted the temporary password for later use
+- Created resource group rg-lab-rbac-07 in East Asia
+
+### User Settings Created
+| Field | Value |
+|---|---|
+| User principal name | testuser01@[yourdomain].onmicrosoft.com |
+| Display name | Test User 01 |
+| Password | Auto generated temporary password |
+| Account status | Enabled |
+
+### What is Microsoft Entra ID
+Microsoft Entra ID is Azure's identity service.
+Every Azure subscription has one Entra ID tenant.
+Users created here can be assigned Azure resource access.
+It was previously called Azure Active Directory.
+The free tier supports unlimited users and groups.
+
+### What I Learned
+- Microsoft Entra ID manages identities for Azure resources
+- Every user gets a UPN in format name@domain.onmicrosoft.com
+- Auto generated passwords are temporary — user must change on login
+- Entra ID free tier is completely free with full user management
+- Creating a user does not give them any Azure access by default
+- Access must be explicitly assigned using RBAC role assignments
+
+### Screenshots
+![Test User Created](screenshots/01-test-user-created.png)
+![Resource Group Created](screenshots/02-resource-group-created.png)
 
 ---
 
