@@ -43,8 +43,58 @@ Vault name is reserved for 90 days after deletion.
 
 ---
 
-## Phase 1 — Create Key Vault
-🔄 Not started yet
+## Phase 1 — Create Key Vault ✅ COMPLETED
+
+### What I Did
+- Created resource group rg-lab-keyvault-08 in East Asia
+- Navigated to Key Vaults and clicked Create
+- Named Key Vault kv-aadil-lab08
+- Selected Standard pricing tier
+- Set permission model to Azure RBAC
+- Disabled purge protection for easy lab cleanup
+- Reviewed and created Key Vault successfully
+- Assigned Key Vault Administrator role to my account
+
+### Settings I Used
+| Field | Value |
+|---|---|
+| Resource group | rg-lab-keyvault-08 |
+| Key Vault name | kv-aadil-lab08 |
+| Region | East Asia |
+| Pricing tier | Standard |
+| Permission model | Azure RBAC |
+| Retention days | 7 days |
+| Purge protection | Disabled |
+
+### Standard vs Premium Tier
+| Feature | Standard | Premium |
+|---|---|---|
+| Secrets and keys | Yes | Yes |
+| HSM backed keys | No | Yes |
+| Cost | ~$0.03 per secret | Higher |
+| Use case | Learning and apps | High security enterprise |
+
+### Why RBAC Permission Model
+RBAC is the modern recommended approach.
+It uses familiar Azure role assignments.
+Access Policies is the legacy approach.
+RBAC provides more granular control.
+Can assign roles at vault or secret level.
+
+### What I Learned
+- Key Vault name must be globally unique across Azure
+- Standard tier is sufficient for learning and most apps
+- RBAC model integrates with Azure AD for access control
+- Purge protection prevents permanent deletion for 90 days
+- Disabled purge protection for easy lab cleanup
+- Must assign Key Vault Administrator role before adding secrets
+- Without proper role you cannot add or view secrets
+
+### Screenshots
+![Resource Group Created](screenshots/01-resource-group-created.png)
+![Key Vault Created](screenshots/02-keyvault-created.png)
+![Key Vault Overview](screenshots/03-keyvault-overview.png)
+![KV Admin Role Assigned](screenshots/04-kv-admin-role-assigned.png)
 
 ---
 
