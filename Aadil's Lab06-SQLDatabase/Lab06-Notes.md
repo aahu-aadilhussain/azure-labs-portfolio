@@ -214,8 +214,65 @@ Result: Current date and time confirmed connection working
 
 ---
 
-## Phase 4 — Query and Explore
-🔄 Not started yet
+## Phase 4 — Query and Explore ✅ COMPLETED
+
+### What I Did
+- Ran SELECT * to view all students
+- Filtered students by country using WHERE clause
+- Used COUNT and GROUP BY for aggregate queries
+- Joined Students and Courses tables using JOIN
+- Updated a record using UPDATE statement
+- Explored connection strings for different languages
+
+### SQL Queries I Ran
+| Query Type | Command | Result |
+|---|---|---|
+| Select all | SELECT * FROM Students | 8 rows returned |
+| Filter | WHERE Country = Qatar | 1 row returned |
+| Count | COUNT(*) AS TotalStudents | 8 |
+| Group by | GROUP BY Country | Countries with counts |
+| Join | JOIN Courses ON Course = CourseName | Combined data |
+| Update | UPDATE SET Country = Jordan | 1 row affected |
+
+### Key SQL Commands Learned
+| Command | Purpose |
+|---|---|
+| SELECT | Retrieves data from table |
+| FROM | Specifies which table |
+| WHERE | Filters results by condition |
+| COUNT | Counts number of rows |
+| GROUP BY | Groups rows by column value |
+| ORDER BY | Sorts results |
+| JOIN | Combines two tables |
+| UPDATE | Modifies existing data |
+| SET | Specifies new value in UPDATE |
+
+### Connection Strings Available
+| Language | Use Case |
+|---|---|
+| ADO.NET | C# and .NET applications |
+| JDBC | Java applications |
+| ODBC | Various languages |
+| PHP | Web applications |
+| GO | Cloud-native applications, DevOps tools, microservices |
+
+### What I Learned
+- SELECT is the most used SQL command
+- WHERE filters rows — like a search condition
+- COUNT and GROUP BY summarize large datasets
+- JOIN combines related data from multiple tables
+- UPDATE modifies existing records safely
+- Connection strings allow apps to connect to database
+- Azure SQL supports multiple programming languages
+- Query Editor shows results in formatted table instantly
+
+### Screenshots
+![Select All Students](screenshots/08-select-all-students.png)
+![Filter Query](screenshots/09-filter-query.png)
+![Aggregate Query](screenshots/10-aggregate-query.png)
+![Join Query](screenshots/11-join-query.png)
+![Update Query](screenshots/12-update-query.png)
+![Connection Strings](screenshots/13-connection-strings.png)
 
 ---
 
