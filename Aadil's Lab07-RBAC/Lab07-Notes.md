@@ -89,8 +89,49 @@ The free tier supports unlimited users and groups.
 
 ---
 
-## Phase 2 — Assign RBAC Roles
-🔄 Not started yet
+## Phase 2 — Assign RBAC Roles ✅ COMPLETED
+
+### What I Did
+- Navigated to rg-lab-rbac-07 Access Control IAM
+- Added Reader role assignment for Test User 01
+- Created storage account aadilrbac07 for resource level test
+- Assigned Storage Blob Data Contributor role on storage account
+- Viewed all role assignments in the IAM Role assignments tab
+
+### Role Assignments Made
+| User | Role | Scope | Level |
+|---|---|---|---|
+| Test User 01 | Reader | rg-lab-rbac-07 | Resource Group |
+| Test User 01 | Storage Blob Data Contributor | aadilrbac07 | Resource |
+
+### RBAC Assignment Components
+| Component | Description | Example |
+|---|---|---|
+| Security Principal | WHO gets access | Test User 01 |
+| Role Definition | WHAT they can do | Reader — view only |
+| Scope | WHERE access applies | rg-lab-rbac-07 |
+
+### Built In Roles Used
+| Role | Permissions | Use Case |
+|---|---|---|
+| Reader | View all resources | Auditors monitoring teams |
+| Storage Blob Data Contributor | Read write delete blobs | App developers |
+| Contributor | Create manage resources | Developers |
+| Owner | Full control plus access management | Administrators |
+
+### What I Learned
+- RBAC assignments have three parts — principal role scope
+- Reader role allows viewing but not changing anything
+- Roles can be assigned at different scope levels
+- Resource level assignment overrides for that specific resource
+- Multiple roles can be assigned to same user at different scopes
+- IAM Access Control page shows all assignments clearly
+- Role assignments take effect within a few minutes
+
+### Screenshots
+![Reader Role Assigned](screenshots/03-reader-role-assigned.png)
+![Contributor Role Assigned](screenshots/04-contributor-role-assigned.png)
+![Role Assignments List](screenshots/05-role-assignments-list.png)
 
 ---
 
