@@ -1,8 +1,9 @@
 # Lab 08 — Azure Key Vault
 **Name:** Aadil Hussain
 **Date Started:** 12 April 2026
-**Total Time Taken:** [....]
-**Status:** 🔄 In Progress
+**Date Completed:** 12 April 2026
+**Total Time Taken:** [ 1 Day ]
+**Status:** ✅ COMPLETED
 
 ---
 
@@ -265,20 +266,78 @@ Version history provides complete audit trail.
 
 ---
 
-## Phase 5 — Cleanup
-🔄 Not started yet
+## Phase 5 — Cleanup ✅ COMPLETED
+
+### What I Did
+- Deleted KV Test User from Microsoft Entra ID
+- Deleted resource group rg-lab-keyvault-08
+- Confirmed all resources are deleted
+- Checked for soft deleted vault in Key Vaults
+- Purged vault to free up the name immediately
+- Checked Cost Management for total cost
+
+### Resources Deleted
+| Resource | Type |
+|---|---|
+| kvtestuser | Entra ID User |
+| kv-aadil-lab08 | Key Vault |
+| rg-lab-keyvault-08 | Resource Group |
+
+### Key Vault Soft Delete Explained
+Key Vault soft delete is enabled by default.
+Deleted vaults are retained for 7 to 90 days.
+The vault name is reserved during retention period.
+Purge permanently deletes and frees the name immediately.
+This prevents accidental permanent data loss.
+
+### Cost This Lab Used
+| Resource | Cost |
+|---|---|
+| Key Vault Standard | First 10K operations free |
+| Secrets storage | ~$0.01 for lab duration |
+| Total | ~$0.00 |
+
+### What I Learned
+- Key Vault soft delete retains vault for 7 days minimum
+- Vault name is reserved after deletion until purged
+- Purge immediately and permanently deletes the vault
+- Key Vault is extremely cost effective for secret management
+- Deleting resource group triggers soft delete on vault
+- Always purge vault after lab to free name for reuse
+
+### Screenshots
+![KV Test User Deleted](screenshots/17-kv-test-user-deleted.png)
+![Delete Confirmation](screenshots/18-delete-confirmation.png)
+![Cleanup Complete](screenshots/19-cleanup-complete.png)
+![Vault Purged](screenshots/20-vault-purged.png)
+![Cost Analysis](screenshots/21-cost-analysis.png)
 
 ---
 
 ## Problems I Faced
 | Problem | What I Tried | How I Fixed It |
 |---|---|---|
-| Write here | Write here | Write here |
+| Secret value not visible after creation | Clicked on secret name | Had to click the version number first then click Show Secret Value |
+| Could not find Objects section in sidebar | Scrolled through sidebar | Found Secrets Keys Certificates under Objects section in left sidebar |
+| KV Test User creation in wrong directory | Created user in wrong tenant | Navigated to Microsoft Entra ID first then created user from Users section |
 
 ---
 
 ## What I Learned
-Fill at the end
+- Key Vault securely stores secrets keys and certificates
+- Eliminates need to hardcode sensitive values in code
+- RBAC model provides fine grained access control
+- Key Vault Secrets User role allows read only secret access
+- Secret values are hidden by default in Azure Portal
+- Every secret update creates a new version automatically
+- Version history provides complete audit trail
+- Secret Identifier URL is used by apps to retrieve secrets
+- Activity log records every Key Vault operation
+- Disabling secret blocks access without deleting it
+- Soft delete retains vault for 7 days after deletion
+- Purge immediately and permanently removes vault
+- Key Vault is extremely cheap — first 10K ops free monthly
+- Applications should always use Key Vault instead of hardcoding
 
 ---
 
@@ -287,20 +346,25 @@ Fill at the end
 |---|---|
 | Key Vault | First 10K operations free per month |
 | Secrets storage | ~$0.03 per secret per month |
-| Total for lab | ~$0.01 |
+| Total for lab | ~$0.00 |
 
 ---
 
 ## My Confidence Rating After This Lab
 | Skill | Before | After |
 |---|---|---|
-| Understanding Key Vault concepts | 1 | fill in |
-| Creating and configuring Key Vault | 1 | fill in |
-| Adding and managing secrets | 1 | fill in |
-| Configuring access policies | 1 | fill in |
-| Retrieving secrets securely | 1 | fill in |
+| Understanding Key Vault concepts | 1 | 4 |
+| Creating and configuring Key Vault | 1 | 3 |
+| Adding and managing secrets | 1 | 4 |
+| Configuring access policies | 1 | 3 |
+| Retrieving secrets securely | 1 | 3 |
 
 ---
 
 ## What I Would Do Differently Next Time
-Fill at the end
+1. Assign Key Vault Administrator role immediately after creation
+2. Test secret retrieval using Azure CLI for more realistic experience
+3. Set expiration dates on secrets to practice rotation
+4. Connect Key Vault to an App Service using Managed Identity
+5. Explore certificate management for SSL TLS use case
+6. Purge deleted vault immediately to free name for reuse
