@@ -202,8 +202,66 @@ This limits the damage from a security breach.
 
 ---
 
-## Phase 4 — Retrieve and Manage Secrets
-🔄 Not started yet
+## Phase 4 — Retrieve and Manage Secrets ✅ COMPLETED 
+
+### What I Did
+- Navigated to db-password secret in Key Vault
+- Clicked Show Secret Value to reveal the password
+- Created a new version of db-password with updated value
+- Viewed both versions in the secret version history
+- Noted the Secret Identifier URL format
+- Explored Activity Log showing all Key Vault operations
+- Disabled api-key secret to test disable functionality
+- Re-enabled api-key secret
+
+### Secret Management Operations Performed
+| Operation | Secret | Result |
+|---|---|---|
+| View secret value | db-password | Value revealed successfully |
+| Create new version | db-password | Version 2 created |
+| View activity log | All secrets | All operations logged |
+| Disable secret | api-key | Secret disabled |
+| Re-enable secret | api-key | Secret re-enabled |
+
+### Secret Identifier URL Format
+https://[vaultname].vault.azure.net/secrets/[secretname]/[version]
+https://kv-aadil-lab08.vault.azure.net/secrets/db-password/
+
+### How Applications Use Key Vault
+Instead of hardcoding in code:
+connection_string = "Server=sql...Password=123"
+
+Application code uses Key Vault SDK:
+secret = client.get_secret("db-connection-string")
+connection_string = secret.value
+
+The password never appears in application code.
+The password is retrieved securely at runtime only.
+
+### Secret Versioning Benefits
+Every update creates a new version automatically.
+Old versions are retained for auditing purposes.
+You can roll back to previous version if needed.
+Applications can pin to specific version or use latest.
+Version history provides complete audit trail.
+
+### What I Learned
+- Secret values are hidden by default — must click Show
+- Every secret update creates new version automatically
+- Secret Identifier URL is used by applications to retrieve secrets
+- Activity log records every single Key Vault operation
+- Disabling a secret blocks access without deleting it
+- Disabled secrets can be re-enabled at any time
+- Version history provides complete audit trail
+- Applications should never store secrets in code
+- Key Vault SDK available for all major programming languages
+
+### Screenshots
+![Secret Value Revealed](screenshots/12-secret-value-revealed.png)
+![Secret Versions](screenshots/13-secret-versions.png)
+![Secret Identifier URL](screenshots/14-secret-identifier-url.png)
+![Activity Log](screenshots/15-insight.png)
+![Secret Disabled](screenshots/16-secret-disabled.png)
 
 ---
 
