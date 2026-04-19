@@ -154,7 +154,7 @@ Doha, Qatar 🇶🇦
 Open to cloud engineer and IT infrastructure roles in Qatar and GCC
 
 [GitHub Profile](https://github.com/aahu-aadilhussain) •
-[LinkedIn](www.linkedin.com/in/aadil-hussain-aahu974)
+[LinkedIn](https://www.linkedin.com/in/aadil-hussain-aahu974)
 
 ---
 
